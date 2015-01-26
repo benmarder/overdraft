@@ -91,8 +91,11 @@ header, footer, nav, main, section, article, aside {
 
 svg {
     background: #2b2b33;
-    float:left;
-   
+    position:absolute;
+ 	
+}
+body{
+	background:purple;
 }
 .year{
 	position:absolute;
@@ -107,10 +110,26 @@ svg {
 	color:gray;
 	 
 }
+.yearSelected{
+	opacity:0.1; 
+	background-color:white;
+	color:gray; 
+}
+
 .node.active {
 	border-width:90px;
 }
-.node {
+/*#filter{
+	position:absolute;
+	background:url("../images/smallMan.jpg") no-repeat;
+	background-color:#1b1b21;
+	color:#76767a;
+	font:15px bold arial;
+	text-align:center;
+	background-position: center; 
+}
+*/
+.node { 
 	  border: solid 1px white;
 	  font: 10px sans-serif;
 	  line-height: 12px;
@@ -122,5 +141,11 @@ svg {
 	  transition-delay: 2s;
 	  direction:rtl;
 	  text-align: left;
+}
+.node>img{
+	margin:15% 0 0 0;	
+	top:10%;
+
+	
 }
 

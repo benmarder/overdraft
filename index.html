@@ -12,8 +12,16 @@
 	<body>
 		<div id="viz"></div>		
 		<script>
+		 var innerWidth = window.innerWidth;
+        var areaChartHeight = 0.09266667*innerHeight;
+        //var filterWidth=0.05171103 * innerWidth;
+        //var areaChartWidth = innerWidth - filterWidth;
+        var gap = innerWidth / 9;
+        var left = -1 * gap;
+        var year = "2003";
+        var i = 0;
 			  var treemap = d3.layout.treemap()
-				    .size([window.innerWidth,window.innerHeight])
+				    .size([window.innerWidth,window.innerHeight-areaChartHeight])
  				    .sticky(true)
  				    .mode("squarify")
  				    .ratio(1.2)
@@ -46,8 +54,8 @@
 					      			
 					      			.on("click", function(e) { $(d3.event.target).toggleClass("active", true); });
 				node.append("img")
-					.attr("height",function(d) { return d.dx*0.75; })
-					.attr("width",function(d) { return d.dx*0.75; })
+					.attr("height",function(d) { return d.dx*0.5; })
+					.attr("width",function(d) { return d.dx*0.5; })
 					.attr("src",function(d) { return d.pic;});
 					node.append("text").text(function(d) { return d.name; });
 				});
@@ -60,16 +68,97 @@
 			      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
 			}
 
-			  // instantiate d3plus
-			  // var visualization = d3plus.viz()
-			    // .container("#viz")  	// container DIV to hold the visualization
-			    // .data(sample_data ) 	// data to use with the visualization
-			    // .type("tree_map")   	// visualization type
-			    // .id("name")         	// key for which our data is unique on
-			    // .size("value")      	// sizing of blocks
-			    // .draw();             	// finally, draw the visualization!
-// 			    
-			    // $(".d3plus_rect:contains('דיור')").css({"background-color":"yellow"}););
+		
+        var lineData = [{
+            "x": i += gap,
+            "y": 250
+        }, {
+            "x": i += gap,
+            "y": 170
+        }, {
+            "x": i += gap,
+            "y": 140
+        }, {
+            "x": i += gap,
+            "y": 220
+        }, {
+            "x": i += gap,
+            "y": 220
+        }, {
+            "x": i += gap,
+            "y": 190
+        }, {
+            "x": i += gap,
+            "y": 170
+        }, {
+            "x": i += gap,
+            "y": 140
+        }, {
+            "x": i += gap,
+            "y": 200
+        }];
+
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", innerWidth)
+            .attr("height", areaChartHeight)
+            .style("top",innerHeight-areaChartHeight);
+
+        var area = d3.svg.area()
+            .interpolate("monotone")
+            .x(function(d) {
+                return x(d.x);
+            })
+            .y0(areaChartHeight)
+            .y1(function(d) {
+                return y(d.y);
+            });
+
+
+        var lineFunction = d3.svg.line()
+            .x(function(d) {
+                return d.x;
+            })
+            .y(function(d) {
+                return d.y;
+            });
+
+        var x = d3.scale.linear().range([0, innerWidth]);
+        var y = d3.scale.linear().range([0,	50]);
+
+        x.domain(d3.extent(lineData, function(d) {
+            return d.x;
+        }));
+        y.domain([0, d3.max(lineData, function(d) {
+            return d.y;
+        })]);
+
+        svg.append("path")
+            .attr("class", "area")
+            .attr("d", area(lineData));
+
+        var linegraph = svg.append("path")
+            .attr("d", lineFunction(lineData))
+            .attr("stroke", "red")
+            .attr("stroke-width", 0)
+            .attr("fill", "none");
+        
+        for (var i = 0; i < 9; ++i) {	
+            $("body").append("<section class='year'>"+(year++)+"</section>");
+            $(".year").eq(i).css({
+                "width": gap - 1,
+                "height": areaChartHeight,
+                "left": left+=gap,
+                "top":innerHeight-areaChartHeight
+            });  
+        }
+        //$("body").append("<section id='filter'>זה אני</section>");
+        //$("#filter").css({"width":filterWidth,"height":areaChartHeight,"left":left+=gap});
+        $(".year").click(function(){
+           						$(".yearSelected").removeClass("yearSelected");
+           						$(this).addClass("yearSelected");
+           										
+           });
 		</script>
 	</body>
 
