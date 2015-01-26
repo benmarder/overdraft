@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="includes/style.css">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+	<script src="includes/d3.min.js"></script>
+	<script>
+    $.getJSON("includes/2003.json", function(data) {
+        //console.log(data.categories.housing.name_he);	   
+        // sample data array
+        var sample_data = [{
+            "value": data.categories.education_culture_entertainment.fifths[5],
+            "name": data.categories.education_culture_entertainment.name_he
+        }, {
+            "value": data.categories.food_excl_vegetables_and_fruit.fifths[5],
+            "name": data.categories.food_excl_vegetables_and_fruit.name_he
+        }, {
+            "value": data.categories.housing.fifths[5],
+            "name": data.categories.housing.name_he
+        }, {
+            "value": data.categories.dwelling_and_household_maintenance.fifths[5],
+            "name": data.categories.dwelling_and_household_maintenance.name_he
+        }, {
+            "value": data.categories.clothing_and_footwear.fifths[5],
+            "name": data.categories.clothing_and_footwear.name_he
+        }, {
+            "value": data.categories.furniture_and_household_equipment.fifths[5],
+            "name": data.categories.furniture_and_household_equipment.name_he
+        }, {
+            "value": data.categories.health.fifths[5],
+            "name": data.categories.health.name_he
+        }, {
+            "value": data.categories.transport_and_communication.fifths[5],
+            "name": data.categories.transport_and_communication.name_he
+        }];
+        var innerWidth = window.innerWidth;
+        var areaChartHeight = 69;
+        var areaChartWidth = innerWidth - 0.05171103 * innerWidth;
+        var gap = areaChartWidth / 9;
+        var left = -1 * gap;
+        var year = "2003";
+        var i = 0;
+        var lineData = [{
+            "x": i += gap,
+            "y": 250
+        }, {
+            "x": i += gap,
+            "y": 170
+        }, {
+            "x": i += gap,
+            "y": 140
+        }, {
+            "x": i += gap,
+            "y": 220
+        }, {
+            "x": i += gap,
+            "y": 220
+        }, {
+            "x": i += gap,
+            "y": 190
+        }, {
+            "x": i += gap,
+            "y": 170
+        }, {
+            "x": i += gap,
+            "y": 140
+        }, {
+            "x": i += gap,
+            "y": 200
+        }];
+
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", innerWidth)
+            .attr("height", areaChartHeight);
+
+        var area = d3.svg.area()
+            .interpolate("monotone")
+            .x(function(d) {
+                return x(d.x);
+            })
+            .y0(230)
+            .y1(function(d) {
+                return y(d.y);
+            });
+
+
+        var lineFunction = d3.svg.line()
+            .x(function(d) {
+                return d.x;
+            })
+            .y(function(d) {
+                return d.y;
+            });
+
+        var x = d3.scale.linear().range([0, innerWidth]);
+        var y = d3.scale.linear().range([0, 69]);
+
+        x.domain(d3.extent(lineData, function(d) {
+            return d.x;
+        }));
+        y.domain([0, d3.max(lineData, function(d) {
+            return d.y;
+        })]);
+
+        svg.append("path")
+            .attr("class", "area")
+            .attr("d", area(lineData));
+
+        var linegraph = svg.append("path")
+            .attr("d", lineFunction(lineData))
+            .attr("stroke", "red")
+            .attr("stroke-width", 0)
+            .attr("fill", "none");
+
+
+        //$("body").add("div").addClass("year").css;       
+        //   $(".year").css({"width":gap-1,"height":areaChartHeight});	
+        for (var i = 0; i < 9; ++i) {	
+            //$(".year").eq(i).css({"width":gap-1,"height":areaChartHeight,"left":left+=gap}).text(year++);
+            $("body").add("section").addClass("year").css({
+                "width": gap - 1,
+                "height": areaChartHeight,
+                "left": left+=gap
+            });
+        }
+
+    });
+			
+			
+		</script>
+	</head>
+	<body>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+		<section class="year"></section>
+			</body>
+
+
+</html>

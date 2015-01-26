@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="includes/style.css">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+		<!-- load D3js -->
+		<script src="includes/d3.min.js"></script>
+	
+	</head>
+	<body>
+		<div id="viz"></div>		
+		<script>
+			  var treemap = d3.layout.treemap()
+				    .size([window.innerWidth,window.innerHeight])
+ 				    .sticky(true)
+ 				    .mode("squarify")
+ 				    .ratio(1.2)
+   				    .value(function(d) { return d.value; });
+			  var color = d3.scale.category20c();
+
+			  var div = d3.select("#viz");
+		$.getJSON("includes/2003.json", function(data){
+	      	//console.log(data.categories.housing.name_he);	   
+			  // sample data array
+			  var sample_data = [
+			    {"value": data.categories.food_excl_vegetables_and_fruit.fifths[5], "name": data.categories.food_excl_vegetables_and_fruit.name_he,"pic":"images/chicken_icon.svg"},
+			    {"value": data.categories.education_culture_entertainment.fifths[5], "name":data.categories.education_culture_entertainment.name_he,"pic":"images/culture_and_education_icon.svg"},
+			    {"value": data.categories.housing.fifths[5], "name": data.categories.housing.name_he,"pic":"images/diur_icon.svg"},
+			    {"value": data.categories.dwelling_and_household_maintenance.fifths[5], "name": data.categories.dwelling_and_household_maintenance.name_he,"pic":"images/cosmetics_icon.svg"},
+			    {"value":data.categories.clothing_and_footwear.fifths[5],"name":data.categories.clothing_and_footwear.name_he,"pic":"images/clothing_icon.svg"},
+			    {"value":data.categories.furniture_and_household_equipment.fifths[5],"name":data.categories.furniture_and_household_equipment.name_he,"pic":"images/savings_icon.svg"},
+			    {"value":data.categories.health.fifths[5],"name":data.categories.health.name_he,"pic":"images/health_icon.svg"},
+			    {"value":data.categories.transport_and_communication.fifths[5],"name":data.categories.transport_and_communication.name_he,"pic":"images/communication_transportation_icon.svg"}
+			  ];
+			  var root = { 'children': sample_data };
+			  
+			  
+			    var node = div.datum(root).selectAll(".node")
+					      .data(treemap.nodes)
+		    				.enter().append("div")
+					        		.attr("class", "node")
+					      			.call(position)
+					      			.style("background", function(d) { return color(d.name); })
+					      			
+					      			.on("click", function(e) { $(d3.event.target).toggleClass("active", true); });
+				node.append("img")
+					.attr("height",function(d) { return d.dx*0.75; })
+					.attr("width",function(d) { return d.dx*0.75; })
+					.attr("src",function(d) { return d.pic;});
+					node.append("text").text(function(d) { return d.name; });
+				});
+
+			function position() {
+			  this.style("left", function(d) { return d.x + "px"; })
+			      .style("top", function(d) { return d.y + "px"; })
+			      .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+			      .style("border","none")
+			      .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+			}
+
+			  // instantiate d3plus
+			  // var visualization = d3plus.viz()
+			    // .container("#viz")  	// container DIV to hold the visualization
+			    // .data(sample_data ) 	// data to use with the visualization
+			    // .type("tree_map")   	// visualization type
+			    // .id("name")         	// key for which our data is unique on
+			    // .size("value")      	// sizing of blocks
+			    // .draw();             	// finally, draw the visualization!
+// 			    
+			    // $(".d3plus_rect:contains('דיור')").css({"background-color":"yellow"}););
+		</script>
+	</body>
+
+
+</html>
