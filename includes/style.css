@@ -100,7 +100,7 @@ body{
 .year{
 	position:absolute;
 	border-right:1px solid #000000;
-	font:20px bold arial;
+	font:20px font2, arial;
 	color:#54545a;
 	text-align:center;
 }
@@ -130,22 +130,36 @@ body{
 }
 */
 .node { 
-	  border: solid 1px white;
-	  font: 10px sans-serif;
-	  line-height: 12px;
-	  overflow: hidden;
-	  position: absolute;
-	  text-indent: 2px;
-	  font-size:15px;
-	  transition: border-width;
-	  transition-delay: 2s;
-	  direction:rtl;
-	  text-align: left;
+	  
+	  /*overflow: hidden;*/
+	  position: fixed;
+	  
 }
 .node>img{
-	margin:0 0 0 0;	
-	top:10%;
+	position:absolute;	
 
-	
 }
 
+
+#name{
+	font:27px font1,arial;
+	opacity:0.3;
+	position:absolute;
+	bottom:0px;
+	left:5px;	
+}
+#percent{
+	font:48px font2,arial;
+	position:absolute;
+	opacity:0.3;
+	bottom:30px;
+	left:5px;
+}
+@font-face{
+    font-family: font1;
+    src: url("../fonts/AdumaFOT-Heavy.otf"); 
+}
+@font-face{
+    font-family: font2;
+    src: url("../fonts/MarkPro-Thin.ttf");
+}

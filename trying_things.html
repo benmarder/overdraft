@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="includes/style.css">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+    </script>
+    <!-- load D3js -->
+    <script src="includes/d3.min.js"></script>
+		
+	</head>
+	<body>
+	
+	<img src="images/culture_and_education_icon.svg">
+	</body>
+<script>
+var result=2;	
+var x=function (src){
+			
+			var Img = new Image();
+				Img.src = src;
+	$(Img).load(function(){
+					 result= this.naturalHeight/this.naturalWidth;
+					
+	})
+	 console.log(result);
+	return result;
+};
+
+window.onload=function(){console.log(x("images/culture_and_education_icon.svg"));}
+
+
+
+
+		</script>
+
+</html>
