@@ -74,11 +74,11 @@ svg {
 }
 @font-face{
     font-family: font1;
-    src: url("../fonts/AdumaFOT-Heavy.otf"); 
+    src: url("../includes/fonts/AdumaFOT-Heavy.otf"); 
 }
 @font-face{
     font-family: font2;
-    src: url("../fonts/MarkPro-Thin.ttf");
+    src: url("../includes/fonts/MarkPro-Thin.ttf");
 }
 .area {
 	fill: #3e3e49;

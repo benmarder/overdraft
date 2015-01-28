@@ -21,8 +21,9 @@
         //var areaChartWidth = innerWidth - filterWidth;
         var gap = innerWidth / 9;
         var left = -1 * gap;
-        var year = "2003";
-        var i = 0;
+        var years = "2003";
+        var i = 0,a = 0;
+                
         var treemap = d3.layout.treemap()
             .size([window.innerWidth, window.innerHeight - areaChartHeight])
             .sticky(true)
@@ -34,54 +35,65 @@
        
 
         var div = d3.select("#viz");
-        $.getJSON("Data Sets/2003new.json", function(data) {	   
+        $.getJSON("includes/Data Sets/2003-2011.json", function(data) {	 
+        	 var year2003=data.y2003;
+        	 var year2004=data.y2004;
+        	 var year2005=data.y2005;
+        	 var year2006=data.y2006;
+        	 var year2007=data.y2007;
+        	 var year2008=data.y2008;
+        	 var year2009=data.y2009;
+        	 var year2010=data.y2010;
+        	 var year2011=data.y2011;
+        
+      	  	 var year=year2008; 
             // sample data array
             var sample_data = [{
-                "value": data.categories.food.fifths[5],
-                "name": data.categories.food.name_he,
+                "value": year.categories.food.fifths[5],
+            	"name": year.categories.food.name_he,
                 "color":"#00a997",
                 "pic": "images/chicken_icon.svg",
                 "height_":335,
                 "ratio":0.91044776
             }, {
-                "value": data.categories.education_culture_entertainment.fifths[5],
-                "name": data.categories.education_culture_entertainment.name_he,
+                "value": year.categories.education_culture_and_entertainment.fifths[5],
+           		"name": year.categories.education_culture_and_entertainment.name_he,
                 "color":"#bacbe9",
                 "pic": "images/culture_and_education_icon.svg",
                 "height_":240,
                 "ratio":0.85833333
             }, {
-                "value": data.categories.housing_dwelling_and_household_maintenance.fifths[5],
-                "name": data.categories.housing_dwelling_and_household_maintenance.name_he,
+                "value": year.categories.housing_dwelling_and_household_maintenance.fifths[5],
+            	"name": year.categories.housing_dwelling_and_household_maintenance.name_he,
                 "color":"#e71f75",
                 "pic": "images/diur_icon.svg",
                 "height_":499,
                 "ratio":0.87775551
             }, {
-                "value": data.categories.miscellaneous_goods_and_services.fifths[5],
-                "name": data.categories.miscellaneous_goods_and_services.name_he,
+                "value": year.categories.miscellaneous_goods_and_services.fifths[5],
+              	"name": year.categories.miscellaneous_goods_and_services.name_he,
                 "color":"#1f2287",
                 "pic": "images/cosmetics_icon.svg",
                 "height_":192,
                 "ratio":1.95833333
             }, {
-                "value": data.categories.clothing_and_footwear.fifths[5],
-                "name": data.categories.clothing_and_footwear.name_he,
+                "value": year.categories.clothing_and_footwear.fifths[5],
+            	"name": year.categories.clothing_and_footwear.name_he,
                 "color":"#f9b349",
                 "pic": "images/clothing_icon.svg",
                 "height_":229,
                 "ratio":1.83842795
             }, 
            	 	{
-                "value": data.categories.health.fifths[5],
-                "name": data.categories.health.name_he,
+                "value": year.categories.health.fifths[5],
+            	"name": year.categories.health.name_he,
                 "color":"#db5567",
                 "pic": "images/health_icon.svg",
                 "height_":55,
                 "ratio":2.8
             }, {
-                "value": data.categories.transport_and_communication.fifths[5],
-                "name": data.categories.transport_and_communication.name_he,
+                "value": year.categories.transport_and_communication.fifths[5],
+            	"name": year.categories.transport_and_communication.name_he,
                 "color":"#8e4393",
                 "pic": "images/communication_transportation_icon.svg",
                 "height_":436,
@@ -125,16 +137,14 @@
                     return ((d.dx-this.width)/2)+"px";
                 });
                 
-                
+                console.log("lalal"+d3.max(data));
                 
             node.append("div")
             	.attr("class","text")
-            	
-           
             	.append("text")
             	.attr("class","percent")
             	.text(function(d) {
-                	return (Math.round((d.value/data.fifths[5])*100))+"%";
+                	return (Math.round((d.value/year.fifths[5])*100))+"%";
             	})
             	.append("text")
             	.attr("class","name")
@@ -142,7 +152,7 @@
                 	return d.name;
             	});
             	
-        });
+       
 
         function position() {
             this.style("right", function(d) {
@@ -159,35 +169,35 @@
                     return Math.max(0, d.dy) + "px";
                 });
         }
-
+console.log("hii"+(a+=gap));
 
         var lineData = [{
-            "x": i += gap,
-            "y": 250
+            "x": a += gap,
+            "y": year2003.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 170
+            "x": a += gap,
+            "y": year2004.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 140
+            "x": a += gap,
+            "y": year2005.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 220
+            "x": a += gap,
+            "y": year2006.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 220
+            "x": a += gap,
+            "y": year2007.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 190
+            "x": a += gap,
+            "y": year2008.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 170
+            "x": a += gap,
+            "y": year2009.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 140
+            "x": a += gap,
+            "y": year2010.fifths[5]
         }, {
-            "x": i += gap,
-            "y": 200
+            "x": a += gap,
+            "y": year2011.fifths[5]
         }];
 
 
@@ -216,7 +226,7 @@
             });
 
         var x = d3.scale.linear().range([0, innerWidth]);
-        var y = d3.scale.linear().range([0, 50]);
+        var y = d3.scale.linear().range([areaChartHeight*3,0]);
 
         x.domain(d3.extent(lineData, function(d) {
             return d.x;
@@ -231,12 +241,11 @@
 
         var linegraph = svg.append("path")
             .attr("d", lineFunction(lineData))
-            .attr("stroke", "red")
             .attr("stroke-width", 0)
             .attr("fill", "none");
 
         for (var i = 0; i < 9; ++i) {
-            $("body").append("<section class='year'>" + (year++) + "</section>");
+            $("body").append("<section class='year'>" + (years++) + "</section>");
             $(".year").eq(i).css({
                 "width": gap,
                 "height": areaChartHeight,
@@ -251,6 +260,7 @@
             $(this).addClass("yearSelected");
 
         });
+      });
     </script>
 </body>
 

@@ -8,33 +8,33 @@
 	<script src="includes/d3.min.js"></script>
 	<script>
 	
-    $.getJSON("includes/2003.json", function(data) {
+    $.getJSON("includes/Data Sets/2003-2011.json", function(data) {
         //console.log(data.categories.housing.name_he);	   
         // sample data array
+        var year2003=data.y2003;
+        var year=year2003;
         var sample_data = [{
-            "value": data.categories.education_culture_entertainment.fifths[5],
-            "name": data.categories.education_culture_entertainment.name_he
+            "value": year.categories.education_culture_entertainment.fifths[5],
+            "name": year.categories.education_culture_entertainment.name_he
         }, {
-            "value": data.categories.food_excl_vegetables_and_fruit.fifths[5],
-            "name": data.categories.food_excl_vegetables_and_fruit.name_he
+            "value": year.categories.food.fifths[5],
+            "name": year.categories.food.name_he
         }, {
-            "value": data.categories.housing.fifths[5],
-            "name": data.categories.housing.name_he
+            "value": year.categories.housing_dwelling_and_household_maintenance.fifths[5],
+            "name": year.categories.housing_dwelling_and_household_maintenance.name_he
         }, {
-            "value": data.categories.dwelling_and_household_maintenance.fifths[5],
-            "name": data.categories.dwelling_and_household_maintenance.name_he
+            "value": year.categories.clothing_and_footwear.fifths[5],
+            "name": year.categories.clothing_and_footwear.name_he
+        },{
+        	 "value": year.categories.miscellaneous_goods_and_services.fifths[5],
+              "name": year.categories.miscellaneous_goods_and_services.name_he,
+        }, 
+         {
+            "value": year.categories.health.fifths[5],
+            "name": year.categories.health.name_he
         }, {
-            "value": data.categories.clothing_and_footwear.fifths[5],
-            "name": data.categories.clothing_and_footwear.name_he
-        }, {
-            "value": data.categories.furniture_and_household_equipment.fifths[5],
-            "name": data.categories.furniture_and_household_equipment.name_he
-        }, {
-            "value": data.categories.health.fifths[5],
-            "name": data.categories.health.name_he
-        }, {
-            "value": data.categories.transport_and_communication.fifths[5],
-            "name": data.categories.transport_and_communication.name_he
+            "value": year.categories.transport_and_communication.fifths[5],
+            "name": year.categories.transport_and_communication.name_he
         }];
         var innerWidth = window.innerWidth;
         var areaChartHeight = 69;
@@ -44,33 +44,34 @@
         var left = -1 * gap;
         var year = "2003";
         var i = 0;
+
         var lineData = [{
             "x": i += gap,
-            "y": 250
+            "y": 25055
         }, {
             "x": i += gap,
-            "y": 170
+            "y": 170555
         }, {
             "x": i += gap,
-            "y": 140
+            "y": 140555
         }, {
             "x": i += gap,
-            "y": 220
+            "y": 22066
         }, {
             "x": i += gap,
-            "y": 220
+            "y": 22055
         }, {
             "x": i += gap,
-            "y": 190
+            "y": 19033
         }, {
             "x": i += gap,
-            "y": 170
+            "y": 17044
         }, {
             "x": i += gap,
-            "y": 140
+            "y": 14033
         }, {
             "x": i += gap,
-            "y": 200
+            "y": 20055
         }];
 
 
@@ -98,7 +99,7 @@
             });
 
         var x = d3.scale.linear().range([0, innerWidth]);
-        var y = d3.scale.linear().range([0,	50]);
+        var y = d3.scale.linear().range([areaChartHeight+40,0]);
 
         x.domain(d3.extent(lineData, function(d) {
             return d.x;
