@@ -16,7 +16,7 @@
     <div id="viz"></div>
     <script>
         var innerWidth = window.innerWidth;
-        var areaChartHeight = 0.09266667 * innerHeight;
+        var areaChartHeight = 0.09266667 * window.innerHeight;
         //var filterWidth=0.05171103 * innerWidth;
         //var areaChartWidth = innerWidth - filterWidth;
         var gap = innerWidth / 9;
@@ -117,6 +117,8 @@
                     return (this.height) * d.ratio;
                 })
                 .style("top", function(d) {
+                	if(window.innerHeight/d.dy >2)
+                		return "6px";
                     return ((d.dy-this.height)/2)+"px";
                 })
                 .style("left", function(d) {
@@ -125,16 +127,21 @@
                 
                 
                 
-            node.append("text")
-            	.attr("id","name")
-            	.text(function(d) {
-                	return d.name;
-            });
-            node.append("text")
-            	.attr("id","percent")
+            node.append("div")
+            	.attr("class","text")
+            	
+           
+            	.append("text")
+            	.attr("class","percent")
             	.text(function(d) {
                 	return (Math.round((d.value/data.fifths[5])*100))+"%";
-            });
+            	})
+            	.append("text")
+            	.attr("class","name")
+            	.text(function(d) {
+                	return d.name;
+            	});
+            	
         });
 
         function position() {
