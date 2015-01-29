@@ -10,7 +10,7 @@
 	    10139.0
 	  ], 
 	  "categories": {
-	    "education_culture_entertainment": {
+	    "education_culture_and_entertainment": {
 	      "name_en": "Education, culture, entertainment", 
 	      "fifths": [
 	        2167.0, 
@@ -682,8 +682,8 @@
 	      }, 
 	      "name_he": "\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
 	    }, 
-	    "transport_and_communication": {
-	      "name_en": "Transport and communication", 
+	    "transport_and_communications": {
+	      "name_en": "Transport and communications", 
 	      "fifths": [
 	        3908.0, 
 	        2344.0, 
@@ -770,7 +770,7 @@
 	    10440.0
 	  ], 
 	  "categories": {
-	    "education_culture_entertainment": {
+	    "education_culture_and_entertainment": {
 	      "name_en": "Education, culture, entertainment", 
 	      "fifths": [
 	        2353.0, 
@@ -1430,7 +1430,7 @@
 	      }, 
 	      "name_he": "\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
 	    }, 
-	    "transport_and_communication": {
+	    "transport_and_communications": {
 	      "name_en": "Transport and communication", 
 	      "fifths": [
 	        4113.0, 
@@ -2080,7 +2080,7 @@
 	      }, 
 	      "name_he": "\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
 	    }, 
-	    "transport_and_communication": {
+	    "transport_and_communications": {
 	      "name_en": "Transport and communication", 
 	      "fifths": [
 	        4318.0, 
