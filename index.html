@@ -21,22 +21,16 @@
         //var areaChartWidth = innerWidth - filterWidth;
         var gap = innerWidth / 9;
         var left = -1 * gap;
-        var years = "2003";
+        var years = "2002";
         var i = 0,a = 0;
                 
-        var treemap = d3.layout.treemap()
-            .size([window.innerWidth, window.innerHeight - areaChartHeight])
-            .sticky(true)
-            .mode("squarify")
-            .ratio(1.2)
-            .value(function(d) {
-                return d.value;
-            });
+        var treemap;
        
-
         var div = d3.select("#viz");
-        $.getJSON("includes/Data Sets/2003-2011.json", function(data) {	 
-        	 var year2003=data.y2003;
+        $.getJSON("includes/Data Sets/2003-2011.json", function(data){
+        	
+        	 var year,sample_data,root;
+         	 var year2003=data.y2003;
         	 var year2004=data.y2004;
         	 var year2005=data.y2005;
         	 var year2006=data.y2006;
@@ -45,10 +39,28 @@
         	 var year2009=data.y2009;
         	 var year2010=data.y2010;
         	 var year2011=data.y2011;
-        
-      	  	 var year=year2003; 
-            // sample data array
-            var sample_data = [{
+        var treeRation=[1.2,2,3	]	; 	   
+		function createTreemap(name,fifths){
+			switch (name){
+				case "2003":year=year2003;break;
+				case "2004":year=year2004;break;
+				case "2005":year=year2005;break;
+				case "2006":year=year2006;break;
+				case "2007":year=year2007;break;
+				case "2008":year=year2008;break;
+				case "2009":year=year2009;break;
+				case "2010":year=year2010;break;
+				case "2011":year=year2011;break;
+			}
+			var treemap= d3.layout.treemap()
+            .size([window.innerWidth, window.innerHeight - areaChartHeight])
+            .sticky(true)
+            .mode("squarify")
+            .ratio(1.2)
+            .value(function(d) {
+                return d.value;
+            });	 
+				 sample_data = [{
                 "value": year.categories.food.fifths[5],
             	"name": year.categories.food.name_he,
                 "color":"#00a997",
@@ -99,66 +111,16 @@
                 "height_":436,
                 "ratio":0.83027523
             }];
-            var root = {
+             root = {
                 'children': sample_data
-            };
-var sample_data2 = [{
-                "value": year2011.categories.food.fifths[5],
-            	"name": year2011.categories.food.name_he,
-                "color":"#00a997",
-                "pic": "images/chicken_icon.svg",
-                "height_":335,
-                "ratio":0.91044776
-            }, {
-                "value": year2011.categories.education_culture_and_entertainment.fifths[5],
-           		"name": year2011.categories.education_culture_and_entertainment.name_he,
-                "color":"#bacbe9",
-                "pic": "images/culture_and_education_icon.svg",
-                "height_":240,
-                "ratio":0.85833333
-            }, {
-                "value": year2011.categories.housing_dwelling_and_household_maintenance.fifths[5],
-            	"name": year2011.categories.housing_dwelling_and_household_maintenance.name_he,
-                "color":"#e71f75",
-                "pic": "images/diur_icon.svg",
-                "height_":499,
-                "ratio":0.87775551
-            }, {
-                "value": year2011.categories.miscellaneous_goods_and_services.fifths[5],
-              	"name": year2011.categories.miscellaneous_goods_and_services.name_he,
-                "color":"#1f2287",
-                "pic": "images/cosmetics_icon.svg",
-                "height_":192,
-                "ratio":1.95833333
-            }, {
-                "value": year2011.categories.clothing_and_footwear.fifths[5],
-            	"name": year2011.categories.clothing_and_footwear.name_he,
-                "color":"#f9b349",
-                "pic": "images/clothing_icon.svg",
-                "height_":229,
-                "ratio":1.83842795
-            }, 
-           	 	{
-                "value": year2011.categories.health.fifths[5],
-            	"name": year2011.categories.health.name_he,
-                "color":"#db5567",
-                "pic": "images/health_icon.svg",
-                "height_":55,
-                "ratio":2.8
-            }, {
-                "value": year2011.categories.transport_and_communications.fifths[5],
-            	"name": year2011.categories.transport_and_communications.name_he,
-                "color":"#8e4393",
-                "pic": "images/communication_transportation_icon.svg",
-                "height_":436,
-                "ratio":0.83027523
-            }];
-            var root2 = {
-                'children': sample_data2
-            };
-
+            };	
+		return treemap;	
+		}
+        	
+      	  	 
+       		treemap=createTreemap("2003").nodes;
             var node = div.datum(root).selectAll(".node")
-                .data(treemap.nodes)
+                .data(treemap)
                 .enter()
                 .append("div")
                 .attr("class", "node")
@@ -197,7 +159,9 @@ var sample_data2 = [{
             	
      
         function position() {
-            this.style("right", function(d) {
+        		
+            this
+            	.style("right", function(d) {
                     return d.x + "px";
                 })
                 .style("top", function(d) {
@@ -213,7 +177,7 @@ var sample_data2 = [{
               		//set the picture area as 40% from the div area 
                 .select("img")
 	                .attr("height", function(d) { //new height= Square root(div area /(old height^2 * ratio)) * old height
-	                    return Math.sqrt((d.dy*d.dx*0.4)/(d.height_*d.height_*d.ratio))*d.height_; 
+	                    return Math.sqrt((d.dy*d.dx*0.35)/(d.height_*d.height_*d.ratio))*d.height_; 
 	                })
 	                .attr("width", function(d) {
 	                    return (this.height) * d.ratio;
@@ -227,41 +191,58 @@ var sample_data2 = [{
 	                    return ((d.dx-this.width)/2)+"px";
 	                });
 	              this.select(".percent") 
+	               .transition()
+	              	.duration(50)
+	              	.text(function(d) {
+		                	return (Math.round((d.value/year.fifths[5])*100))-11+"%";
+		            	})  	
+		            	 .transition()
+	              	.duration(50)
+	              	.text(function(d) {
+		                	return (Math.round((d.value/year.fifths[5])*100))-10+"%";
+		            	})  	
+		            	 .transition()
+	              	.duration(50)
+	              	.text(function(d) {
+		                	return (Math.round((d.value/year.fifths[5])*100))-9+"%";
+		            	})  	
 	               	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-8+"%";
-		            	})  	.transition()
-	              	.duration(100)
+		            	})  	
+		            .transition()
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-7+"%";
-		            	})  	.transition()
-	              	.duration(100)
+		            	})  	
+		            .transition()
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-6+"%";
 		            	}) 
 	              	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-5+"%";
 		            	})
 		            	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-4+"%";
 		            	})
 		            	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-3+"%";
 		            	})
 		            	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-2+"%";
 		            	}) 
 		            	.transition()
-	              	.duration(100)
+	              	.duration(50)
 	              	.text(function(d) {
 		                	return (Math.round((d.value/year.fifths[5])*100))-1+"%";
 		            	});
@@ -350,7 +331,7 @@ var sample_data2 = [{
             .attr("fill", "none");
 
         for (var i = 0; i < 9; ++i) {
-            $("body").append("<section class='year'>" + (years++) + "</section>");
+            $("body").append("<section class='year' id="+(++years)+">" + (years) + "</section>");
             $(".year").eq(i).css({
                 "width": gap,
                 "height": areaChartHeight,
@@ -365,17 +346,19 @@ var sample_data2 = [{
             $(".yearSelected").removeClass("yearSelected");
             $(this).addClass("yearSelected");
             
-             var treemap2 = d3.layout.treemap()
-            .size([window.innerWidth, window.innerHeight - areaChartHeight])
-            .sticky(true)
-            .mode("squarify")
-            .ratio(1.2)
-            .value(function(d) {
-                return d.value;
-            });
+           //  var treemap2 = d3.layout.treemap()
+          //  .size([window.innerWidth, window.innerHeight - areaChartHeight])
+          //  .sticky(true)
+          //  .mode("squarify")
+           // .ratio(1.2)
+           // .value(function(d) {
+            //    return d.value;
+         //   });
+      
+         	treemap=createTreemap($(this).attr("id"));
             var node2 = div
-   				 .datum(root2).selectAll(".node")
-    			.data(treemap2.nodes)
+   				.datum(root).selectAll(".node")
+    			.data(createTreemap(treemap))
     			.transition()
     			.duration(1500)
     			.call(position);
