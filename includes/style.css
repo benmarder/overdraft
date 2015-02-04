@@ -45,6 +45,9 @@ svg {
 .node { 
 	 position: absolute;  
 }
+.node:hover{
+	opacity:0.6;
+}
 .node>img{
 	position:absolute;	
 	
