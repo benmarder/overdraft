@@ -24,21 +24,14 @@
         var years = "2002";
         var i = 0,a = 0;
       
-        var main,health,currentFifth, currentYear,category;//global
+        var main,health,currentFifth, currentYear,category,	lineData,currentCategory;//global
   
         var div = d3.select("#viz");
         $.getJSON("includes/Data Sets/2003-2011.json", function(data){
         	 
         	 var year,root;
-         	 var year2003=data.y2003;
-        	 var year2004=data.y2004;
-        	 var year2005=data.y2005;
-        	 var year2006=data.y2006;
-        	 var year2007=data.y2007;
-        	 var year2008=data.y2008;
-        	 var year2009=data.y2009;
-        	 var year2010=data.y2010;
-        	 var year2011=data.y2011;
+        	 var yearsArr=[data.y2003,data.y2004,data.y2005,data.y2006,data.y2007,data.y2008,data.y2009,data.y2010,data.y2011];
+         	
 			 
        
        var treemap= d3.layout.treemap()
@@ -54,18 +47,11 @@
 		function createTreemap(yearSelacted,fifths,selected){
 			currentYear=yearSelacted;
 			currentFifth=fifths;
-			switch (yearSelacted){
-				case "2003":year=year2003;break;
-				case "2004":year=year2004;break;
-				case "2005":year=year2005;break;
-				case "2006":year=year2006;break;
-				case "2007":year=year2007;break;
-				case "2008":year=year2008;break;
-				case "2009":year=year2009;break;
-				case "2010":year=year2010;break;
-				case "2011":year=year2011;break;
-			}
-				
+			currentCategory=selected;
+			
+			year=yearsArr[yearSelacted-2003];
+			
+			 	
 			 main = [{
 		        "value": year.categories.food.fifths[fifths],
 		    	"name": year.categories.food.name_he,
@@ -163,8 +149,7 @@
 		    },{
 		    "value":0
 		    }];
-		                   
-		switch (selected){
+		    switch (selected){
 				case "main":
 						selected=main;
 						category=year;
@@ -173,9 +158,10 @@
 						selected=health;
 						category=year.categories.health;
 						break;
-				
 			}
-			 
+		         
+		            
+		
 			
 				 
              root = {
@@ -349,36 +335,42 @@
         }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        var lineData = [{
+      lineData = [{
             "x": a += gap,
-            "y": year2003.fifths[5]
+            "y": getYearVal(yearsArr[0])
         }, {
             "x": a += gap,
-            "y": year2004.fifths[5]
+            "y": getYearVal(yearsArr[1])
         }, {
             "x": a += gap,
-            "y": year2005.fifths[5]
+            "y": getYearVal(yearsArr[2])
         }, {
             "x": a += gap,
-            "y": year2006.fifths[5]
+            "y": getYearVal(yearsArr[3])
         }, {
             "x": a += gap,
-            "y": year2007.fifths[5]
+            "y": getYearVal(yearsArr[4])
         }, {
             "x": a += gap,
-            "y": year2008.fifths[5]
+            "y": getYearVal(yearsArr[5])
         }, {
             "x": a += gap,
-            "y": year2009.fifths[5]
+            "y": getYearVal(yearsArr[6])
         }, {
             "x": a += gap,
-            "y": year2010.fifths[5]
+            "y": getYearVal(yearsArr[7])
         }, {
             "x": a += gap,
-            "y": year2011.fifths[5]
-        }];
-
-
+            "y": getYearVal(yearsArr[8])
+        }];    
+        function getYearVal(_year){
+        	var result;
+        	switch (currentCategory){
+        				case "main":result=_year.fifths[currentFifth];break;
+        				case "health":result=_year.health.fifths[currentFifth];break;
+        	}
+        	return result;
+        }
         var svg = d3.select("body").append("svg")
             .attr("width", innerWidth)
             .attr("height", areaChartHeight)
@@ -418,6 +410,7 @@
             .attr("d", area(lineData));
 
         var linegraph = svg.append("path")
+        	
             .attr("d", lineFunction(lineData))
             .attr("stroke-width", 0)
             .attr("fill", "none");
@@ -431,12 +424,7 @@
                 "top": innerHeight - areaChartHeight
             });
         }
-      //  $(".node").click(function(){
-   ///   	var parameters=$(this).css("content")).split(" ")[2]
-    	//	changeLayout((,$(this).attr("class").split(" ")[1],$(this).attr("class").split(" ")[3]);
-
-    		
-      //});
+    
       function changeLayout(year_,fif,select){
       	createTreemap(year_,fif,select);
       treemap.sticky(true);
