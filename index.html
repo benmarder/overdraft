@@ -22,435 +22,458 @@
         var gap = innerWidth / 9;
         var left = -1 * gap;
         var years = "2002";
-        var i = 0,a = 0;
-      
-        var main,health,currentFifth, currentYear,category,	lineData,currentCategory;//global
-  
+        var i = 0,
+            a = 0;
+
+        var main, health, currentFifth, currentYear, category, lineData, currentCategory, linegraph, x, y, lineFunction, area; //global
+
         var div = d3.select("#viz");
-        $.getJSON("includes/Data Sets/2003-2011.json", function(data){
-        	 
-        	 var year,root;
-        	 var yearsArr=[data.y2003,data.y2004,data.y2005,data.y2006,data.y2007,data.y2008,data.y2009,data.y2010,data.y2011];
-         	
-			 
-       
-       var treemap= d3.layout.treemap()
-            .size([window.innerWidth, window.innerHeight - areaChartHeight])
-            .sticky(true)
-            .mode("squarify")
-            .ratio(1.2)
-            .value(function(d) {
-            	//console.log("val:"+d.value);
-                return d.value;
-            });	 
- //////////////////////////////////////////////////////////////////////////////////////            	   
-		function createTreemap(yearSelacted,fifths,selected){
-			currentYear=yearSelacted;
-			currentFifth=fifths;
-			currentCategory=selected;
-			
-			year=yearsArr[yearSelacted-2003];
-			
-			 	
-			 main = [{
-		        "value": year.categories.food.fifths[fifths],
-		    	"name": year.categories.food.name_he,
-		    	"nameEn": year.categories.food.name_en,
-		        "color":"#00a997",
-		        "pic": "images/chicken_icon.svg",
-		        "height_":335,
-		        "ratio":0.91044776
-		    }, {
-		        "value": year.categories.education_culture_and_entertainment.fifths[fifths],
-		   		"name": year.categories.education_culture_and_entertainment.name_he,
-		   		"nameEn": year.categories.education_culture_and_entertainment.name_en,
-		        "color":"#bacbe9",
-		        "pic": "images/culture_and_education_icon.svg",
-		        "height_":240,
-		        "ratio":0.85833333
-		    }, {
-		        "value": year.categories.housing_dwelling_and_household_maintenance.fifths[fifths],
-		    	"name": year.categories.housing_dwelling_and_household_maintenance.name_he,
-		    	"nameEn": year.categories.housing_dwelling_and_household_maintenance.name_en,
-		        "color":"#e71f75",
-		        "pic": "images/diur_icon.svg",
-		        "height_":499,
-		        "ratio":0.87775551
-		    }, {
-		        "value": year.categories.miscellaneous_goods_and_services.fifths[fifths],
-		      	"name": year.categories.miscellaneous_goods_and_services.name_he,
-		      	"nameEn": year.categories.miscellaneous_goods_and_services.name_en,
-		        "color":"#1f2287",
-		        "pic": "images/cosmetics_icon.svg",
-		        "height_":192,
-		        "ratio":1.95833333
-		    }, {
-		        "value": year.categories.clothing_and_footwear.fifths[fifths],
-		    	"name": year.categories.clothing_and_footwear.name_he,
-		    	"nameEn": year.categories.clothing_and_footwear.name_en,
-		        "color":"#f9b349",
-		        "pic": "images/clothing_icon.svg",
-		        "height_":229,
-		        "ratio":1.83842795
-		    }, 
-		   	 	{
-		        "value": year.categories.health.fifths[fifths],
-		    	"name": year.categories.health.name_he,
-		    	"nameEn": year.categories.health.name_en,
-		        "color":"#db5567",
-		        "pic": "images/health_icon.svg",
-		        "height_":55,
-		        "ratio":2.8
-		    }, {
-		        "value": year.categories.transport_and_communications.fifths[fifths],
-		    	"name": year.categories.transport_and_communications.name_he,
-		    	"nameEn": year.categories.transport_and_communications.name_en,
-		        "color":"#8e4393",
-		        "pic": "images/communication_transportation_icon.svg",
-		        "height_":436,
-		        "ratio":0.83027523
-		    }]; 
-		    health = [{
-		        "value": year.categories.health.categories.expenditures_on_health_services.fifths[fifths],
-		    	"name": year.categories.health.categories.expenditures_on_health_services.name_he,
-			    "nameEn": year.categories.health.categories.expenditures_on_health_services.name_en,
-		        "color":"#db5567",
-		        "pic": "images/chicken_icon.svg",
-		        "height_":335,
-		        "ratio":0.91044776
-		    }, {
-		        "value": year.categories.health.categories.dental_treatment.fifths[fifths],
-		   		"name": year.categories.health.categories.dental_treatment.name_he,
-		   		"nameEn": year.categories.health.categories.dental_treatment.name_en,
-		        "color":"#de6676",
-		        "pic": "images/culture_and_education_icon.svg",
-		        "height_":240,
-		        "ratio":0.85833333
-		    }, {
-		        "value": year.categories.health.categories.health_insurance.fifths[fifths],
-		    	"name": year.categories.health.categories.health_insurance.name_he,
-		    	"nameEn": year.categories.health.categories.health_insurance.name_en,
-		        "color":"#e27785",
-		        "pic": "images/diur_icon.svg",
-		        "height_":499,
-		        "ratio":0.87775551
-		    }, {
-		        "value": year.categories.health.categories.other_expenditures_on_health.fifths[fifths],
-		      	"name": year.categories.health.categories.other_expenditures_on_health.name_he,
-		      	"nameEn": year.categories.health.categories.other_expenditures_on_health.name_en,
-		        "color":"#e58894",
-		        "pic": "images/cosmetics_icon.svg",
-		        "height_":192,
-		        "ratio":1.95833333
-		    },{
-		    "value":0
-		    },{
-		    "value":0
-		    },{
-		    "value":0
-		    }];
-		    switch (selected){
-				case "main":
-						selected=main;
-						category=year;
-						break;
-				case "Health":
-						selected=health;
-						category=year.categories.health;
-						break;
-			}
-		         
-		            
-		
-			
-				 
-             root = {
-                'children': selected
-            };	
-			
-		}
-        	
- /////////////////////////////////////////////////////     	  	 
-       		createTreemap("2003",5,"main");
-       		//createTreemap("2003",5,"health");
-       		
+        $.getJSON("includes/Data Sets/2003-2011.json", function(data) {
+
+            var year, root;
+            var yearsArr = [data.y2003, data.y2004, data.y2005, data.y2006, data.y2007, data.y2008, data.y2009, data.y2010, data.y2011];
+
+
+
+            var treemap = d3.layout.treemap()
+                .size([window.innerWidth, window.innerHeight - areaChartHeight])
+                .sticky(true)
+                .mode("squarify")
+                .ratio(1.2)
+                .value(function(d) {
+                    //console.log("val:"+d.value);
+                    return d.value;
+                });
+
+            createTreemap("2003", 5, "main");
+            //createTreemap("2003",5,"health");
+
             var node = div.datum(root).selectAll(".node");
-                node.data(treemap.nodes)
+            node.data(treemap.nodes)
                 .enter()
                 .append("div")
                 .attr("class", "node")
                 .on("click", onClick)
                 .call(appendImage)
                 .append("div")
-                .attr("class","text")
+                .attr("class", "text")
                 .call(appendText_percent)
                 .call(appendText_name);
-                d3.selectAll(".node").call(position);
-                
-                
-                function onClick(d){
-           	 console.log("yep"+d.nameEn);
-           	 	
-                    changeLayout(currentYear,currentFifth,d.nameEn);
+            d3.selectAll(".node").call(position);
 
-                }
-                function appendText_percent(){
-                	this.append("text")
-	            	.attr("class","percent");  	
-                }
-                function appendText_name(){
-                	this.append("text")
-	            	.attr("class","name");
-	            		
-                }
-                function appendImage(){
+           var svg = d3.select("body").append("svg")
+                .attr("width", innerWidth)
+                .attr("height", areaChartHeight)
+                .style("top", innerHeight - areaChartHeight);
+
+            area = d3.svg.area()
+                .interpolate("monotone")
+                .x(function(d) {
+                    return x(d.x);
+                })
+                .y0(areaChartHeight)
+                .y1(function(d) {
+                    return y(d.y);
+                });
+            lineFunction = d3.svg.line()
+                .x(function(d) {
+                    return d.x;
+                })
+                .y(function(d) {
+                    return d.y;
+                });
+
+            x = d3.scale.linear().range([0, innerWidth]);
+            y = d3.scale.linear().range([areaChartHeight * 3, 0]);
+			changeArea();
+			 svg.append("path")
+			 	.attr("class", "area")
+			 	.attr("d", area(lineData));
+			linegraph = svg
+						.append("path")
+						.attr("d", lineFunction(lineData));
+            
+
+            for (var i = 0; i < 9; ++i) {
+                $("body").append("<section class='year' id=" + (++years) + ">" + (years) + "</section>");
+                $(".year").eq(i).css({
+                    "width": gap,
+                    "height": areaChartHeight,
+                    "left": left += gap,
+                    "top": innerHeight - areaChartHeight
+                });
+            }
+
+            function onClick(d) {
+				if((d.nameEn != "Food" )&&(d.nameEn != "Housing, Dwelling and household maintenance" )&&(d.nameEn != "Clothing and footwear")&&(d.nameEn != "Health")&&(d.nameEn != "Education, culture and entertainment")&&(d.nameEn != "Transport and communication")&& (d.nameEn != "Miscellaneous goods and services")){
+					console.log("im in");
+					return;
+				}
+				
+                changeLayout(currentYear, currentFifth, d.nameEn);
+                changeArea()
+            }
+
+            function appendText_percent() {
+                this.append("text")
+                    .attr("class", "percent");
+            }
+
+            function appendText_name() {
+                this.append("text")
+                    .attr("class", "name");
+
+            }
+
+            function appendImage() {
                 this.append("img");
-	                
+
+            }
+
+            function getYearVal(_year) {
+                var result;
+                switch (currentCategory) {
+                    case "main":
+                        result = _year.fifths[currentFifth];
+                        console.log("main was picked");
+                        break;
+                    case "Health":
+                        result = _year.categories.health.fifths[currentFifth];
+                        console.log("health was picked");
+                        break;
+                }
+                return result;
+            }
+			var v=1;
+            function changeArea() {
+            	 a = 0;
+                lineData = [{
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[0])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[1])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[2])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[3])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[4])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[5])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[6])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[7])
+                }, {
+                    "x": a += gap,
+                    "y": getYearVal(yearsArr[8])
+                }];
+                
+				console.log("hellooooooooooooo"+yearsArr[0].fifths[5]);
+
+                x.domain(d3.extent(lineData, function(d) {
+                    return d.x;
+                }));
+                y.domain([0, d3.max(lineData, function(d) {
+                    return d.y;
+                })]);
+
+                //	svg.selectAll("path")
+    				//		.attr("d", lineData);
+    				
+                 	 svg.selectAll("path")
+                 	 .transition()
+                    .duration(1500)
+                    .attr("d",function(){
+                 	 											if(v){
+                 	 													v=0;
+                 	 													return area(lineData);
+                 	 											}
+                 	 											else{v=1;return lineFunction(lineData);}
+                 	 											});
+					//svg.select(".linegraph").attr("d", lineFunction(lineData));
+               
+            }
+
+
+            ////////////////////////////////////////////////////////////////          	
+
+            function position() {
+
+                    this
+
+                        .style("background", function(d) {
+                            return d.color;
+                        })
+                        .style("right", function(d) {
+                            return d.x + "px";
+                        })
+                        .style("top", function(d) {
+                            return d.y + "px";
+                        })
+                        .style("width", function(d) {
+                            return Math.max(0, d.dx) + "px";
+                        })
+
+                    .style("height", function(d) {
+                        return Math.max(0, d.dy) + "px";
+                    })
+
+                    .select("img")
+					
+                        .attr("height", function(d) { //new height= Square root(div area /(old height^2 * ratio)) * old height
+
+                            return Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_;
+
+                        })
+
+                    .attr("width", function(d) {
+
+                            return (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio;
+                        })
+                        .style("top", function(d) {
+                            if (window.innerHeight / d.dy > 2)
+                                return "6px";
+                            return ((d.dy - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_)) / 2) + "px";
+                        })
+
+                    .style("left", function(d) {
+                        return ((d.dx - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio) / 2) + "px";
+                    })
+                    
+                    
+                    .attr("src", function(d) {
+                            return d.pic;
+                       });
+                       
+                    
+                    this.select(".percent")
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 11 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 10 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 9 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 8 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 7 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 6 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 5 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 4 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 3 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 2 + "%";
+                        })
+                        .transition()
+                        .duration(50)
+                        .text(function(d) {
+                            return (Math.round((d.value / category.fifths[currentFifth]) * 100)) - 1 + "%";
+                        });
+
+
+
+                    this.select(".name")
+
+                    .text(function(d) {
+                        return d.name;
+                    });
+
+                }
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+            function changeLayout(year_, fif, select) {
+                createTreemap(year_, fif, select);
+                treemap.sticky(true);
+                div
+                    .datum(root).selectAll(".node")
+                    .data(treemap.nodes)
+                    .transition()
+                    .duration(1500)
+                    .call(position);
+
+            };
+
+
+            $(".year").click(function() {
+                $(".yearSelected").removeClass("yearSelected");
+                $(this).addClass("yearSelected");
+                // changeLayout("2003",5,"health");
+
+                changeLayout($(this).attr("id"), currentFifth, currentCategory);
+
+            });
+
+            //////////////////////////////////////////////////////////////////////////////////////            	   
+            function createTreemap(yearSelacted, fifths, selected) {
+                currentYear = yearSelacted;
+                currentFifth = fifths;
+                currentCategory = selected;
+
+                year = yearsArr[yearSelacted - 2003];
+
+
+                main = [{
+                    "value": year.categories.food.fifths[fifths],
+                    "name": year.categories.food.name_he,
+                    "nameEn": year.categories.food.name_en,
+                    "color": "#00a997",
+                    "pic": "images/chicken_icon.svg",
+                    "height_": 335,
+                    "ratio": 0.91044776
+                }, {
+                    "value": year.categories.education_culture_and_entertainment.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.name_en,
+                    "color": "#bacbe9",
+                    "pic": "images/culture_and_education_icon.svg",
+                    "height_": 240,
+                    "ratio": 0.85833333
+                }, {
+                    "value": year.categories.housing_dwelling_and_household_maintenance.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.name_en,
+                    "color": "#e71f75",
+                    "pic": "images/diur_icon.svg",
+                    "height_": 499,
+                    "ratio": 0.87775551
+                }, {
+                    "value": year.categories.miscellaneous_goods_and_services.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.name_en,
+                    "color": "#1f2287",
+                    "pic": "images/cosmetics_icon.svg",
+                    "height_": 192,
+                    "ratio": 1.95833333
+                }, {
+                    "value": year.categories.clothing_and_footwear.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.name_en,
+                    "color": "#f9b349",
+                    "pic": "images/clothing_icon.svg",
+                    "height_": 229,
+                    "ratio": 1.83842795
+                }, {
+                    "value": year.categories.health.fifths[fifths],
+                    "name": year.categories.health.name_he,
+                    "nameEn": year.categories.health.name_en,
+                    "color": "#db5567",
+                    "pic": "images/health_icon.svg",
+                    "height_": 55,
+                    "ratio": 2.8
+                }, {
+                    "value": year.categories.transport_and_communications.fifths[fifths],
+                    "name": year.categories.transport_and_communications.name_he,
+                    "nameEn": year.categories.transport_and_communications.name_en,
+                    "color": "#8e4393",
+                    "pic": "images/communication_transportation_icon.svg",
+                    "height_": 436,
+                    "ratio": 0.83027523
+                },{
+                	"value":0
+                  },{
+                	"value":0
+                }];
+                health = [{
+                    "value": year.categories.health.categories.expenditures_on_health_services.fifths[fifths],
+                    "name": year.categories.health.categories.expenditures_on_health_services.name_he,
+                    "nameEn": year.categories.health.categories.expenditures_on_health_services.name_en,
+                    "color": "#db5567",
+                    "pic": "http://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg",
+                    "height_": 335,
+                    "ratio": 0.91044776
+                }, {
+                    "value": year.categories.health.categories.dental_treatment.fifths[fifths],
+                    "name": year.categories.health.categories.dental_treatment.name_he,
+                    "nameEn": year.categories.health.categories.dental_treatment.name_en,
+                    "color": "#de6676",
+                    "pic": "http://upload.wikimedia.org/wikipedia/commons/8/84/Konqi_svg.svg",
+                    "height_": 240,
+                    "ratio": 0.85833333
+                }, {
+                    "value": year.categories.health.categories.health_insurance.fifths[fifths],
+                    "name": year.categories.health.categories.health_insurance.name_he,
+                    "nameEn": year.categories.health.categories.health_insurance.name_en,
+                    "color": "#e27785",
+                    "pic": "https://www.gnu.org/graphics/meditate.svg",
+                    "height_": 499,
+                    "ratio": 0.87775551
+                }, {
+                    "value": year.categories.health.categories.other_expenditures_on_health.fifths[fifths],
+                    "name": year.categories.health.categories.other_expenditures_on_health.name_he,
+                    "nameEn": year.categories.health.categories.other_expenditures_on_health.name_en,
+                    "color": "#e58894",
+                    "pic": "http://www.tuxpaint.org/stamps/stamps/animals/insects/bee.svg",
+                    "height_": 192,
+                    "ratio": 1.95833333
+                }, {
+                    "value": 0
+                }, {
+                    "value": 0
+                }, {
+                    "value": 0
+                }];
+                switch (selected) {
+                    case "main":
+                        selected = main;
+                        category = year;
+                        break;
+                    case "Health":
+                        selected = health;
+                        category = year.categories.health;
+                        break;
                 }
 
-          
-            
-  ////////////////////////////////////////////////////////////////          	
-     
-        function position() {
-        		
-            this
-              	
-                .style("background", function(d) {
-                    return d.color;
-                })
-            	.style("right", function(d) {
-                    return d.x + "px";
-                })
-                .style("top", function(d) {
-                    return d.y + "px";
-                })
-                .style("width", function(d) {
-                    return Math.max(0, d.dx) + "px";
-                })
-                
-                .style("height", function(d) {
-                    return Math.max(0, d.dy) + "px";
-                })
-                //.style("content","lala")
-               // .classed(currentFifth,true)
-                //.classed(currentYear,true)
-                //.classed("health",true)
-              		//set the picture area as 40% from the div area 
-             // 	.on("click", function(e) {
-              	//	alert("hi");
-              		//console.log(this);
-              //		changeLayout(currentYear,currentFifth,health);
-                	//alert("fifth:"+currentFifth+"year:"+currentYear);
-            //	})
-                .select("img")
-               
-                	.attr("src", function(d) {
-	                    return d.pic;
-	                })   
-	                .attr("height", function(d) { //new height= Square root(div area /(old height^2 * ratio)) * old height
-	                	  
-	                    return Math.sqrt((d.dy*d.dx*0.35)/(d.height_*d.height_*d.ratio))*d.height_; 
-	                    
-	                })
-	           
-	                .attr("width", function(d) {
-	                
-	                    return (Math.sqrt((d.dy*d.dx*0.35)/(d.height_*d.height_*d.ratio))*d.height_) * d.ratio;
-	                })
-	                .style("top", function(d) {
-	                	if(window.innerHeight/d.dy >2)
-	                		return "6px";
-	                    return ((d.dy-(Math.sqrt((d.dy*d.dx*0.35)/(d.height_*d.height_*d.ratio))*d.height_))/2)+"px";
-	                })
-	              
-	                .style("left", function(d) {
-	                    return ((d.dx-(Math.sqrt((d.dy*d.dx*0.35)/(d.height_*d.height_*d.ratio))*d.height_)*d.ratio)/2)+"px";
-	                });
-	              this.select(".percent") 
-	               .transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-11+"%";
-		            	})  	
-		            	 .transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-10+"%";
-		            	})  	
-		            	 .transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-9+"%";
-		            	})  	
-	               	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-8+"%";
-		            	})  	
-		            .transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-7+"%";
-		            	})  	
-		            .transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-6+"%";
-		            	}) 
-	              	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-5+"%";
-		            	})
-		            	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-4+"%";
-		            	})
-		            	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-3+"%";
-		            	})
-		            	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-2+"%";
-		            	}) 
-		            	.transition()
-	              	.duration(50)
-	              	.text(function(d) {
-		                	return (Math.round((d.value/category.fifths[currentFifth])*100))-1+"%";
-		            	});
-		            	
-	              	
-		            	
-			      this.select(".name") 
-			      
-			      	.text(function(d) {
-	               				 return d.name;
-               			});
-  	
-        }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                root = {
+                    'children': selected
+                };
 
-      lineData = [{
-            "x": a += gap,
-            "y": getYearVal(yearsArr[0])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[1])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[2])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[3])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[4])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[5])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[6])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[7])
-        }, {
-            "x": a += gap,
-            "y": getYearVal(yearsArr[8])
-        }];    
-        function getYearVal(_year){
-        	var result;
-        	switch (currentCategory){
-        				case "main":result=_year.fifths[currentFifth];break;
-        				case "health":result=_year.health.fifths[currentFifth];break;
-        	}
-        	return result;
-        }
-        var svg = d3.select("body").append("svg")
-            .attr("width", innerWidth)
-            .attr("height", areaChartHeight)
-            .style("top", innerHeight - areaChartHeight);
+            }
 
-        var area = d3.svg.area()
-            .interpolate("monotone")
-            .x(function(d) {
-                return x(d.x);
-            })
-            .y0(areaChartHeight)
-            .y1(function(d) {
-                return y(d.y);
-            });
-
-
-        var lineFunction = d3.svg.line()
-            .x(function(d) {
-                return d.x;
-            })
-            .y(function(d) {
-                return d.y;
-            });
-
-        var x = d3.scale.linear().range([0, innerWidth]);
-        var y = d3.scale.linear().range([areaChartHeight*3,0]);
-
-        x.domain(d3.extent(lineData, function(d) {
-            return d.x;
-        }));
-        y.domain([0, d3.max(lineData, function(d) {
-            return d.y;
-        })]);
-
-        svg.append("path")
-            .attr("class", "area")
-            .attr("d", area(lineData));
-
-        var linegraph = svg.append("path")
-        	
-            .attr("d", lineFunction(lineData))
-            .attr("stroke-width", 0)
-            .attr("fill", "none");
-
-        for (var i = 0; i < 9; ++i) {
-            $("body").append("<section class='year' id="+(++years)+">" + (years) + "</section>");
-            $(".year").eq(i).css({
-                "width": gap,
-                "height": areaChartHeight,
-                "left": left += gap,
-                "top": innerHeight - areaChartHeight
-            });
-        }
-    
-      function changeLayout(year_,fif,select){
-      	createTreemap(year_,fif,select);
-      treemap.sticky(true);
-      	 div
-   				.datum(root).selectAll(".node")
-    			.data(treemap.nodes)
-    			.transition()
-    			.duration(1500)
-    			.call(position);
-   				
-		 };
-      
-        //$("body").append("<section id='filter'>זה אני</section>");
-        //$("#filter").css({"width":filterWidth,"height":areaChartHeight,"left":left+=gap});
-        
-        $(".year").click(function() {
-            $(".yearSelected").removeClass("yearSelected");
-            $(this).addClass("yearSelected");
-           // changeLayout("2003",5,"health");
-           
-         	changeLayout($(this).attr("id"),5,"main");
-            
-      });
-     });
-      
-       
+            /////////////////////////////////////////////////////   
+        });
     </script>
 </body>
 
