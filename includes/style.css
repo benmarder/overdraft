@@ -21,6 +21,9 @@ li{
 	cursor:pointer;
 	height:8%;
 }
+.personSelected,#one_person,#two_persons,#three_persons,#four_persons,#five_persons,#six_persons{
+	left:4%;
+}
 
 #share{
 	top:0;
@@ -51,7 +54,73 @@ li{
 }
 #link_share:hover{
 		content:url("../images/share_link.svg");
+}
 
+#one_person{
+	content:url('../images/1 person_unselected.svg');
+	top:8%;
+	visibility: hidden
+}
+#personSelected1{
+		content:url('../images/1 person.svg');
+}
+#one_person:hover{
+	content:url('../images/1 person.svg');
+}
+#two_persons{
+	content:url('../images/2 persons_unselected.svg');
+	top:16%;
+	visibility: hidden
+}
+#two_persons:hover{
+	content:url('../images/2 persons.svg');
+}
+#personSelected2{
+		content:url('../images/2 persons.svg');
+}
+#three_persons{
+	content:url('../images/3 persons_unselected.svg');
+	top:24%;
+	visibility: hidden
+}
+#three_persons:hover{
+	content:url('../images/3 persons.svg');
+}
+#personSelected3{
+	content:url('../images/3 persons.svg');
+}
+#four_persons{
+	content:url('../images/4 persons_unselected.svg');
+	top:32%;
+	visibility: hidden
+}
+#four_persons:hover{
+	content:url('../images/4 persons.svg');
+}
+#personSelected4{
+	content:url('../images/4 persons.svg');
+}
+#five_persons{
+	content:url('../images/5 persons_unselected.svg');
+	top:40%;
+	visibility: hidden
+}
+#five_persons:hover{
+	content:url('../images/5 persons.svg');
+}
+#personSelected5{
+	content:url('../images/5 persons.svg');
+}
+#six_persons{
+	content:url('../images/6 persons_unselected.svg');
+	top:48%;
+	visibility: hidden
+}
+#six_persons:hover{
+	content:url('../images/6 persons.svg');
+}
+#personSelected6{
+	content:url('../images/6 persons.svg');
 }
 #main_x{
 	
