@@ -16,37 +16,42 @@ header, footer, nav, main, section, article, aside {
 	content:url("../images/logo.svg");
 	height:8%;
 }
-#share{
+li{
 	position:absolute;
+	cursor:pointer;
+	height:8%;
+}
+
+#share{
 	top:0;
 	content:url("../images/share.svg");
-	height:8%;
-	cursor:pointer;
 }
+
 #fb_share{
-	position:absolute;
 	top:8%;
-	content:url("../images/share_facebook.svg");
-	height:8%;
-	cursor:pointer;
+	content:url("../images/share_facebook_unselected.svg");
 	visibility: hidden;
+}
+#fb_share:hover{
+		content:url("../images/share_facebook.svg");
+
 }
 #twit_share{
-	position:absolute;
 	top:16%;
-	content:url("../images/share_twitter.svg");
-	height:8%;
-	cursor:pointer;
+	content:url("../images/share_twitter_unselected.svg");
 	visibility: hidden;
-	
+}
+#twit_share:hover{
+	content:url("../images/share_twitter.svg");
 }
 #link_share{
-	position:absolute;
 	top:24%;
-	content:url("../images/share_link.svg");
-	height:8%;
-	cursor:pointer;
+	content:url("../images/share_link_unselected.svg");
 	visibility: hidden;
+}
+#link_share:hover{
+		content:url("../images/share_link.svg");
+
 }
 #main_x{
 	
