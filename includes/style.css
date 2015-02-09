@@ -2,44 +2,106 @@
 	margin:0px;
 	padding:0px;
 	overflow: hidden;
-	
+	color:#ffffff;
+
 }
 header, footer, nav, main, section, article, aside {
 	display: block;
 	
 }	
+#logo{
+	position:absolute;
+	top:0;
+	right:0;
+	content:url("../images/logo.svg");
+	height:8%;
+}
+#share{
+	position:absolute;
+	top:0;
+	content:url("../images/share.svg");
+	height:8%;
+	cursor:pointer;
+}
+#fb_share{
+	position:absolute;
+	top:8%;
+	content:url("../images/share_facebook.svg");
+	height:8%;
+	cursor:pointer;
+	visibility: hidden;
+}
+#twit_share{
+	position:absolute;
+	top:16%;
+	content:url("../images/share_twitter.svg");
+	height:8%;
+	cursor:pointer;
+	visibility: hidden;
+	
+}
+#link_share{
+	position:absolute;
+	top:24%;
+	content:url("../images/share_link.svg");
+	height:8%;
+	cursor:pointer;
+	visibility: hidden;
+}
+#main_x{
+	
+}
+#Health_x{
+	content:url("../images/x_Health.svg");
+}
 
-
-
+#Clothingandfootwear_x{
+	content:url("../images/x_Clothing and footwear.svg");
+}
+#Miscellaneousgoodsandservices_x{
+	content:url("../images/x_Cosmetics.svg");
+}
+#Food_x{
+	content:url("../images/x_food.svg");
+}
+#HousingDwellingandhouseholdmaintenance_x{
+	content:url("../images/x_Housing and household.svg");
+}
+.x_botton{
+	cursor:pointer;
+	position:absolute;
+	width:40px;
+}
+.x_botton:hover{
+	-webkit-animation:spin 2s linear infinite;
+    -moz-animation:spin 2s linear infinite;
+    animation:spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 svg {
     background: #2b2b33;
     position:absolute;
-    
- 	
+  
 }
 
 .year{
 	position:absolute;
 	border-right:1px solid #000000;
 	font:20px font3,arial;
-	color:#54545a;
 	text-align:center;
 	
 }
-.year:hover{
+.year:hover,.yearSelected{
 	opacity:0.1; 
-	background-color:white;
-	color#808080;	 
+	background-color:#FFFFFF;
+	color:#757575 ;	 
 }
-.yearSelected{
-	opacity:0.1; 
-	background-color:white;
-	color:gray; 
-}
+
 
 .node.active {
 	border-width:90px;
-	
 }
 
 .node { 
@@ -50,30 +112,23 @@ svg {
 }
 .node>img{
 	position:absolute;	
-	
-
 }
 
 .text{
 	position:absolute;
 	bottom:0px;
-	opacity:0.3;
+	
 }
 
 .name{
 	font:27px font1,arial;
 	display:block;
-	/*position:absolute;
-	bottom:0px;
-	left:5px;*/
-	
+	padding:0 0 5px 10px;
 }
 .percent{
 	font:48px font2,arial;
 	display:block;
-	/*position:absolute;
-	bottom:30px;
-	left:5px;*/
+	padding-left:10px;
 }
 @font-face{
     font-family: font1;
@@ -91,4 +146,57 @@ svg {
 	fill: #3e3e49;
   	stroke-width:0;
   	
+}
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
+}
+.animated {
+	visibility:visible !important;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+@-webkit-keyframes fadeOutUpBig {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -2000px, 0);
+            transform: translate3d(0, -2000px, 0);
+  }
+}
+
+@keyframes fadeOutUpBig {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -2000px, 0);
+            transform: translate3d(0, -2000px, 0);
+  }
+}
+
+.fadeOutUpBig {
+  -webkit-animation-name: fadeOutUpBig;
+          animation-name: fadeOutUpBig;
 }

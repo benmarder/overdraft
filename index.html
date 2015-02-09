@@ -14,39 +14,76 @@
 
 <body>
     <div id="viz"></div>
+     <img class="x_botton">
+     <a id="logo" href="index.html"></a>
+	     <li id="share">
+	     		<li id="fb_share">
+	  		   	<li id="twit_share">
+	     		<li id="link_share">
+	     	
+	     
+     	
+    
+     		
+     		
+
+     
     <script>
         var innerWidth = window.innerWidth;
         var areaChartHeight = 0.09266667 * window.innerHeight;
-        //var filterWidth=0.05171103 * innerWidth;
-        //var areaChartWidth = innerWidth - filterWidth;
         var gap = innerWidth / 9;
         var left = -1 * gap;
         var years = "2002";
         var i = 0,
             a = 0;
 
-        var main, health, currentFifth, currentYear, category, lineData, currentCategory, linegraph, x, y, lineFunction, area; //global
+        var main, health,clothing,food, currentFifth, currentYear, category,
+         lineData, currentCategory, linegraph, x, y, lineFunction, area,lastYear,lastFifth,lastCategory; //global
 
         var div = d3.select("#viz");
         $.getJSON("includes/Data Sets/2003-2011.json", function(data) {
 
             var year, root;
             var yearsArr = [data.y2003, data.y2004, data.y2005, data.y2006, data.y2007, data.y2008, data.y2009, data.y2010, data.y2011];
-
-
-
             var treemap = d3.layout.treemap()
                 .size([window.innerWidth, window.innerHeight - areaChartHeight])
                 .sticky(true)
                 .mode("squarify")
                 .ratio(1.2)
-                .value(function(d) {
-                    //console.log("val:"+d.value);
+                .value(function(d) {                
                     return d.value;
                 });
-
+			$(".x_botton").css({"top":window.innerHeight - areaChartHeight -50,"right":10})
+							.click(function(){
+										changeLayout(lastYear,lastFifth,lastCategory);
+										changeArea();
+										$(this).attr("id","main_x");
+									});
+			var linksOn=1;						
+			$("#share").click(function(){
+										if(linksOn){
+											$("#fb_share").attr("class","animated fadeInDown");
+											setTimeout(function(){
+												$("#twit_share").attr("class","animated fadeInDown");
+												setTimeout(function(){
+													$("#link_share").attr("class","animated fadeInDown");	
+												}, 180);	
+											}, 180);
+											linksOn=0;
+										}
+										else{
+											$("#fb_share").attr("class","animated fadeOutUpBig");
+											setTimeout(function(){
+												$("#twit_share").attr("class","animated fadeOutUpBig");
+												setTimeout(function(){
+													$("#link_share").attr("class","animated fadeOutUpBig");	
+												}, 180);	
+											}, 180);
+											linksOn=1;
+										}	
+							});						
             createTreemap("2003", 5, "main");
-            //createTreemap("2003",5,"health");
+            
 
             var node = div.datum(root).selectAll(".node");
             node.data(treemap.nodes)
@@ -60,7 +97,8 @@
                 .call(appendText_percent)
                 .call(appendText_name);
             d3.selectAll(".node").call(position);
-
+			
+			
            var svg = d3.select("body").append("svg")
                 .attr("width", innerWidth)
                 .attr("height", areaChartHeight)
@@ -90,29 +128,31 @@
 			 	.attr("class", "area")
 			 	.attr("d", area(lineData));
 			linegraph = svg
+						.attr("class", "lineData")
 						.append("path")
 						.attr("d", lineFunction(lineData));
             
 
             for (var i = 0; i < 9; ++i) {
-                $("body").append("<section class='year' id=" + (++years) + ">" + (years) + "</section>");
+                $("body").append("<section class='year' id=" + (++years) + ">"+years+"</section>");
                 $(".year").eq(i).css({
                     "width": gap,
                     "height": areaChartHeight,
                     "left": left += gap,
                     "top": innerHeight - areaChartHeight
-                });
+                })
             }
+            $("#"+currentYear).addClass("yearSelected");
 
             function onClick(d) {
 				if((d.nameEn != "Food" )&&(d.nameEn != "Housing, Dwelling and household maintenance" )&&(d.nameEn != "Clothing and footwear")&&(d.nameEn != "Health")&&(d.nameEn != "Education, culture and entertainment")&&(d.nameEn != "Transport and communication")&& (d.nameEn != "Miscellaneous goods and services")){
-					console.log("im in");
 					return;
 				}
-				
-                changeLayout(currentYear, currentFifth, d.nameEn);
-                changeArea()
+				$(".x_botton").attr("id",d.nameEn.replace(/ /g,'').replace(/,/g,'')+"_x");
+				changeLayout(currentYear, currentFifth, d.nameEn);
+				changeArea();
             }
+            
 
             function appendText_percent() {
                 this.append("text")
@@ -135,16 +175,20 @@
                 switch (currentCategory) {
                     case "main":
                         result = _year.fifths[currentFifth];
-                        console.log("main was picked");
                         break;
                     case "Health":
                         result = _year.categories.health.fifths[currentFifth];
-                        console.log("health was picked");
                         break;
+                    case "Clothing and footwear":
+                        result = _year.categories.clothing_and_footwear.fifths[currentFifth];
+                        break;
+                    case "Food":
+                    	result = _year.categories.food.fifths[currentFifth];
+                        break;    
                 }
                 return result;
             }
-			var v=1;
+			
             function changeArea() {
             	 a = 0;
                 lineData = [{
@@ -175,9 +219,7 @@
                     "x": a += gap,
                     "y": getYearVal(yearsArr[8])
                 }];
-                
-				console.log("hellooooooooooooo"+yearsArr[0].fifths[5]);
-
+               
                 x.domain(d3.extent(lineData, function(d) {
                     return d.x;
                 }));
@@ -185,23 +227,14 @@
                     return d.y;
                 })]);
 
-                //	svg.selectAll("path")
-    				//		.attr("d", lineData);
-    				
-                 	 svg.selectAll("path")
-                 	 .transition()
-                    .duration(1500)
-                    .attr("d",function(){
-                 	 											if(v){
-                 	 													v=0;
-                 	 													return area(lineData);
-                 	 											}
-                 	 											else{v=1;return lineFunction(lineData);}
-                 	 											});
-					//svg.select(".linegraph").attr("d", lineFunction(lineData));
+                 	 svg.select(".area")
+                 		.transition()
+                 		.duration(1500)
+						.attr("d",function(){return area(lineData);});
+					svg.select(".lineData")
+						.attr("d",function(){return lineFunction(lineData);});
                
             }
-
 
             ////////////////////////////////////////////////////////////////          	
 
@@ -215,8 +248,8 @@
                         .style("right", function(d) {
                             return d.x + "px";
                         })
-                        .style("top", function(d) {
-                            return d.y + "px";
+                        .style("bottom", function(d) {
+                            return d.y+areaChartHeight + "px";
                         })
                         .style("width", function(d) {
                             return Math.max(0, d.dx) + "px";
@@ -239,7 +272,9 @@
                             return (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio;
                         })
                         .style("top", function(d) {
-                            if (window.innerHeight / d.dy > 2)
+                        	if(d.nameEn =="Health")
+                        		return "55px";
+                            if ((window.innerHeight-areaChartHeight) / d.dy > 2)
                                 return "6px";
                             return ((d.dy - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_)) / 2) + "px";
                         })
@@ -340,26 +375,26 @@
             $(".year").click(function() {
                 $(".yearSelected").removeClass("yearSelected");
                 $(this).addClass("yearSelected");
-                // changeLayout("2003",5,"health");
-
                 changeLayout($(this).attr("id"), currentFifth, currentCategory);
-
             });
 
             //////////////////////////////////////////////////////////////////////////////////////            	   
             function createTreemap(yearSelacted, fifths, selected) {
-                currentYear = yearSelacted;
-                currentFifth = fifths;
-                currentCategory = selected;
-
-                year = yearsArr[yearSelacted - 2003];
-
+                lastYear=currentYear;			//
+                lastFifth=currentFifth;			//remember last layout
+                lastCategory=currentCategory;	//
+                currentYear=yearSelacted;
+                currentFifth=fifths;
+                currentCategory=selected;
+                year=yearsArr[yearSelacted - 2003];
+				$(".yearSelected").removeClass("yearSelected");
+                $("#"+yearSelacted).addClass("yearSelected");
 
                 main = [{
                     "value": year.categories.food.fifths[fifths],
                     "name": year.categories.food.name_he,
                     "nameEn": year.categories.food.name_en,
-                    "color": "#00a997",
+                    "color": "#cc72e1",
                     "pic": "images/chicken_icon.svg",
                     "height_": 335,
                     "ratio": 0.91044776
@@ -367,7 +402,7 @@
                     "value": year.categories.education_culture_and_entertainment.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.name_en,
-                    "color": "#bacbe9",
+                    "color": "#f9dc62",
                     "pic": "images/culture_and_education_icon.svg",
                     "height_": 240,
                     "ratio": 0.85833333
@@ -375,7 +410,7 @@
                     "value": year.categories.housing_dwelling_and_household_maintenance.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.name_en,
-                    "color": "#e71f75",
+                    "color": "#42e8ce",
                     "pic": "images/diur_icon.svg",
                     "height_": 499,
                     "ratio": 0.87775551
@@ -383,7 +418,7 @@
                     "value": year.categories.miscellaneous_goods_and_services.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.name_en,
-                    "color": "#1f2287",
+                    "color": "#45b9f5",
                     "pic": "images/cosmetics_icon.svg",
                     "height_": 192,
                     "ratio": 1.95833333
@@ -391,7 +426,7 @@
                     "value": year.categories.clothing_and_footwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.name_en,
-                    "color": "#f9b349",
+                    "color": "#fdebcc",
                     "pic": "images/clothing_icon.svg",
                     "height_": 229,
                     "ratio": 1.83842795
@@ -399,7 +434,7 @@
                     "value": year.categories.health.fifths[fifths],
                     "name": year.categories.health.name_he,
                     "nameEn": year.categories.health.name_en,
-                    "color": "#db5567",
+                    "color": "#f39463",
                     "pic": "images/health_icon.svg",
                     "height_": 55,
                     "ratio": 2.8
@@ -407,7 +442,7 @@
                     "value": year.categories.transport_and_communications.fifths[fifths],
                     "name": year.categories.transport_and_communications.name_he,
                     "nameEn": year.categories.transport_and_communications.name_en,
-                    "color": "#8e4393",
+                    "color": "#f37264",
                     "pic": "images/communication_transportation_icon.svg",
                     "height_": 436,
                     "ratio": 0.83027523
@@ -415,39 +450,43 @@
                 	"value":0
                   },{
                 	"value":0
+                },{
+                	"value":0
+                },{
+                	"value":0
                 }];
                 health = [{
                     "value": year.categories.health.categories.expenditures_on_health_services.fifths[fifths],
                     "name": year.categories.health.categories.expenditures_on_health_services.name_he,
                     "nameEn": year.categories.health.categories.expenditures_on_health_services.name_en,
-                    "color": "#db5567",
-                    "pic": "http://upload.wikimedia.org/wikipedia/commons/b/b0/NewTux.svg",
-                    "height_": 335,
-                    "ratio": 0.91044776
+                    "color": "#f4d6c7",
+                    "pic": "images/ambulance.svg",
+                    "height_": 307,
+                    "ratio": 2.01628664
                 }, {
                     "value": year.categories.health.categories.dental_treatment.fifths[fifths],
                     "name": year.categories.health.categories.dental_treatment.name_he,
                     "nameEn": year.categories.health.categories.dental_treatment.name_en,
-                    "color": "#de6676",
-                    "pic": "http://upload.wikimedia.org/wikipedia/commons/8/84/Konqi_svg.svg",
-                    "height_": 240,
-                    "ratio": 0.85833333
+                    "color": "#f3ba9c",
+                    "pic": "images/thooth_icon.svg",
+                    "height_": 162,
+                    "ratio": 0.87654321
                 }, {
                     "value": year.categories.health.categories.health_insurance.fifths[fifths],
                     "name": year.categories.health.categories.health_insurance.name_he,
                     "nameEn": year.categories.health.categories.health_insurance.name_en,
-                    "color": "#e27785",
-                    "pic": "https://www.gnu.org/graphics/meditate.svg",
-                    "height_": 499,
-                    "ratio": 0.87775551
+                    "color": "#f4e9e4",
+                    "pic": "images/mada_icon.svg",
+                    "height_": 162,
+                    "ratio": 1.74691358
                 }, {
                     "value": year.categories.health.categories.other_expenditures_on_health.fifths[fifths],
                     "name": year.categories.health.categories.other_expenditures_on_health.name_he,
                     "nameEn": year.categories.health.categories.other_expenditures_on_health.name_en,
-                    "color": "#e58894",
-                    "pic": "http://www.tuxpaint.org/stamps/stamps/animals/insects/bee.svg",
-                    "height_": 192,
-                    "ratio": 1.95833333
+                    "color": "#f39463",
+                    "pic": "images/pills_icon.svg",
+                    "height_": 352,
+                    "ratio": 0.84375
                 }, {
                     "value": 0
                 }, {
@@ -455,6 +494,153 @@
                 }, {
                     "value": 0
                 }];
+                clothing = [{
+                    "value": year.categories.clothing_and_footwear.categories.women_s_outerwear.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.women_s_outerwear.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.women_s_outerwear.name_en,
+                    "color": "#fdebcc",
+                    "pic": "images/dress_icon.svg",
+                    "height_": 267,
+                    "ratio": 0.65543071
+                }, {
+                    "value": year.categories.clothing_and_footwear.categories.men_s_outerwear.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.men_s_outerwear.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.men_s_outerwear.name_en,
+                    "color": "#fbd9a3",
+                    "pic": "images/Tshirt_icon.svg",
+                    "height_": 363,
+                    "ratio": 0.91184573
+                }, {
+                    "value": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.name_en,
+                    "color": "#f8ba60",
+                    "pic": "images/washer_icon.svg",
+                    "height_": 182,
+                    "ratio": 1.74691358
+                }, {
+                    "value": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_en,
+                    "color": "#ed973a",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.clothing_and_footwear.categories.footwear.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.footwear.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.footwear.name_en,
+                    "color": "#facc88",
+                    "pic": "images/shoes_icon.svg",
+                    "height_": 253,
+                    "ratio": 0.87747036
+                }, {
+                   "value": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "images/sewing_icon.svg",
+                    "height_": 163,
+                    "ratio": 1.90797546
+                }, {
+                   "value": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.fifths[fifths],
+                    "name": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_he,
+                    "nameEn": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_en,
+                    "color": "#f8c06d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }];
+                food = [{
+                    "value": year.categories.food.categories.miscellaneous_food_products.fifths[fifths],
+                    "name": year.categories.food.categories.miscellaneous_food_products.name_he,
+                    "nameEn": year.categories.food.categories.miscellaneous_food_products.name_en,
+                    "color": "#ffccdd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.food.categories.bread_cereals_and_pastry_products.fifths[fifths],
+                    "name": year.categories.food.categories.bread_cereals_and_pastry_products.name_he,
+                    "nameEn": year.categories.food.categories.bread_cereals_and_pastry_products.name_en,
+                    "color": "#ccfddd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.food.categories.fish.fifths[fifths],
+                    "name": year.categories.food.categories.fish.name_he,
+                    "nameEn": year.categories.food.categories.fish.name_en,
+                    "color": "#fcd53d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.food.categories.vegetables_and_fruit.fifths[fifths],
+                    "name": year.categories.food.categories.vegetables_and_fruit.name_he,
+                    "nameEn": year.categories.food.categories.vegetables_and_fruit.name_en,
+                    "color": "#f88d5d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.food.categories.meals_away_from_home.fifths[fifths],
+                    "name": year.categories.food.categories.meals_away_from_home.name_he,
+                    "nameEn": year.categories.food.categories.meals_away_from_home.name_en,
+                    "color": "#fa5c88",
+                    "pic": "",
+                    "height_":0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.food.categories.milk_milk_products_and_eggs.fifths[fifths],
+                    "name": year.categories.food.categories.milk_milk_products_and_eggs.name_he,
+                    "nameEn": year.categories.food.categories.milk_milk_products_and_eggs.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.food.categories.meat_and_poultry.fifths[fifths],
+                    "name": year.categories.food.categories.meat_and_poultry.name_he,
+                    "nameEn": year.categories.food.categories.meat_and_poultry.name_en,
+                    "color": "#f8c06d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                },{
+                   "value": year.categories.food.categories.vegetable_oils_and_products.fifths[fifths],
+                    "name": year.categories.food.categories.vegetable_oils_and_products.name_he,
+                    "nameEn": year.categories.food.categories.vegetable_oils_and_products.name_en,
+                    "color": "#f2fedd",
+                    "pic": "",
+                    "height_":0,
+                    "ratio":0 
+                },{
+                   "value": year.categories.food.categories.soft_drinks.fifths[fifths],
+                    "name": year.categories.food.categories.soft_drinks.name_he,
+                    "nameEn": year.categories.food.categories.soft_drinks.name_en,
+                    "color": "#fef6dd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio":0 
+                },{
+                   "value": year.categories.food.categories.sugar_and_sugar_products.fifths[fifths],
+                    "name": year.categories.food.categories.sugar_and_sugar_products.name_he,
+                    "nameEn": year.categories.food.categories.sugar_and_sugar_products.name_en,
+                    "color": "#ff45dc",
+                    "pic": "",
+                    "height_":0 ,
+                    "ratio": 0
+                },{
+                   "value": year.categories.food.categories.alcoholic_beverages.fifths[fifths],
+                    "name": year.categories.food.categories.alcoholic_beverages.name_he,
+                    "nameEn": year.categories.food.categories.alcoholic_beverages.name_en,
+                    "color": "#ff12dd",
+                    "pic": "",
+                    "height_":0,
+                    "ratio":0 
+                }];
+              
                 switch (selected) {
                     case "main":
                         selected = main;
@@ -464,6 +650,14 @@
                         selected = health;
                         category = year.categories.health;
                         break;
+                    case "Clothing and footwear": 
+                    	selected = clothing;
+                    	category = year.categories.clothing_and_footwear;
+                    	break;
+                    case "Food":
+                    	selected = food;
+                    	category = year.categories.food;
+                    	break;
                 }
 
                 root = {
@@ -475,6 +669,7 @@
             /////////////////////////////////////////////////////   
         });
     </script>
+   
 </body>
 
 
