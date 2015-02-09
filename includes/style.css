@@ -66,6 +66,13 @@ li{
 #Miscellaneousgoodsandservices_x{
 	content:url("../images/x_Cosmetics.svg");
 }
+#Educationcultureandentertainment_x{
+	content:url("../images/x_food.svg");
+}
+#Transportandcommunications_x{
+		content:url("../images/x_food.svg");
+
+}
 #Food_x{
 	content:url("../images/x_food.svg");
 }
@@ -172,8 +179,8 @@ svg {
 }
 .animated {
 	visibility:visible !important;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }

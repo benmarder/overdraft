@@ -21,11 +21,6 @@
 	<li id="twit_share">
 	<li id="link_share">
 	     	
-	     
-     	
-    
-     		
-     		
 
      
     <script>
@@ -37,8 +32,9 @@
         var i = 0,
             a = 0;
 
-        var main, health,clothing,food, currentFifth, currentYear, category,
-         lineData, currentCategory, linegraph, x, y, lineFunction, area,lastYear,lastFifth,lastCategory; //global
+        var main, health,clothing,food,housing,education,transport, currentFifth, currentYear, category,
+         lineData, currentCategory,miscellaneous, linegraph, x, y, lineFunction,
+          area,lastYear,lastFifth; //global
 
         var div = d3.select("#viz");
         $.getJSON("includes/Data Sets/2003-2011.json", function(data) {
@@ -55,7 +51,7 @@
                 });
 			$(".x_botton").css({"top":window.innerHeight - areaChartHeight -50,"right":10})
 							.click(function(){
-										changeLayout(lastYear,lastFifth,lastCategory);
+										changeLayout(lastYear,lastFifth,"main");
 										changeArea();
 										$(this).attr("id","main_x");
 									});
@@ -67,8 +63,8 @@
 												$("#twit_share").attr("class","animated fadeInDown");
 												setTimeout(function(){
 													$("#link_share").attr("class","animated fadeInDown");	
-												}, 180);	
-											}, 180);
+												}, 50);	
+											}, 50);
 											linksOn=0;
 										}
 										else{
@@ -82,7 +78,7 @@
 											linksOn=1;
 										}	
 							});						
-            createTreemap("2003", 5, "main");
+            createTreemap("2003", 6, "main");
             
 
             var node = div.datum(root).selectAll(".node");
@@ -140,17 +136,21 @@
                     "height": areaChartHeight,
                     "left": left += gap,
                     "top": innerHeight - areaChartHeight
-                })
+                });
             }
             $("#"+currentYear).addClass("yearSelected");
 
             function onClick(d) {
-				if((d.nameEn != "Food" )&&(d.nameEn != "Housing, Dwelling and household maintenance" )&&(d.nameEn != "Clothing and footwear")&&(d.nameEn != "Health")&&(d.nameEn != "Education, culture and entertainment")&&(d.nameEn != "Transport and communication")&& (d.nameEn != "Miscellaneous goods and services")){
+            		
+				if((d.nameEn != "Food" )&&(d.nameEn != "Housing, Dwelling and household maintenance" )&&(d.nameEn != "Clothing and footwear")&&(d.nameEn != "Health")&&(d.nameEn != "Education, culture and entertainment")&&(d.nameEn != "Transport and communications")&& (d.nameEn != "Miscellaneous goods and services")){
 					return;
 				}
+				lastYear=currentYear;
+				lastFifth=currentFifth;
 				$(".x_botton").attr("id",d.nameEn.replace(/ /g,'').replace(/,/g,'')+"_x");
 				changeLayout(currentYear, currentFifth, d.nameEn);
 				changeArea();
+			
             }
             
 
@@ -184,7 +184,22 @@
                         break;
                     case "Food":
                     	result = _year.categories.food.fifths[currentFifth];
+                        break;
+                    case "Miscellaneous goods and services":
+                    	result = _year.categories.miscellaneous_goods_and_services.fifths[currentFifth];
+                        break;
+                    case "Education, culture and entertainment":
+                    	result = _year.categories.education_culture_and_entertainment.fifths[currentFifth];
+                        break;
+                    case "Transport and communications":
+                    	result = _year.categories.transport_and_communications.fifths[currentFifth];
+                        break;
+                     case "Housing, Dwelling and household maintenance":
+                    	result = _year.categories.housing_dwelling_and_household_maintenance.fifths[currentFifth];
                         break;    
+                        
+                          
+                             
                 }
                 return result;
             }
@@ -368,7 +383,6 @@
                     .transition()
                     .duration(1500)
                     .call(position);
-
             };
 
 
@@ -380,9 +394,6 @@
 
             //////////////////////////////////////////////////////////////////////////////////////            	   
             function createTreemap(yearSelacted, fifths, selected) {
-                lastYear=currentYear;			//
-                lastFifth=currentFifth;			//remember last layout
-                lastCategory=currentCategory;	//
                 currentYear=yearSelacted;
                 currentFifth=fifths;
                 currentCategory=selected;
@@ -511,14 +522,6 @@
                     "height_": 363,
                     "ratio": 0.91184573
                 }, {
-                    "value": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.fifths[fifths],
-                    "name": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.name_he,
-                    "nameEn": year.categories.clothing_and_footwear.categories.cleaning_and_laundry_outside_home.name_en,
-                    "color": "#f8ba60",
-                    "pic": "images/washer_icon.svg",
-                    "height_": 182,
-                    "ratio": 1.74691358
-                }, {
                     "value": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_en,
@@ -535,14 +538,6 @@
                     "height_": 253,
                     "ratio": 0.87747036
                 }, {
-                   "value": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.fifths[fifths],
-                    "name": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.name_he,
-                    "nameEn": year.categories.clothing_and_footwear.categories.sewing_fabrics_and_accessories.name_en,
-                    "color": "#f2ab4c",
-                    "pic": "images/sewing_icon.svg",
-                    "height_": 163,
-                    "ratio": 1.90797546
-                }, {
                    "value": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_en,
@@ -550,6 +545,11 @@
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
+                },{
+                	"value":0
+                },
+                {
+                	"value":0
                 }];
                 food = [{
                     "value": year.categories.food.categories.miscellaneous_food_products.fifths[fifths],
@@ -640,8 +640,274 @@
                     "height_":0,
                     "ratio":0 
                 }];
-              
+                miscellaneous = [{
+                    "value": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_en,
+                    "color": "#ffccdd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_en,
+                    "color": "#ccfddd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_en,
+                    "color": "#fcd53d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_en,
+                    "color": "#f88d5d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_en,
+                    "color": "#fa5c88",
+                    "pic": "",
+                    "height_":0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                  	"value": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.fifths[fifths],
+                    "name": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_he,
+                    "nameEn": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                }];
+                education = [{
+                    "value": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.name_en,
+                    "color": "#ffccdd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.name_en,
+                    "color": "#ccfddd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_en,
+                    "color": "#fcd53d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_en,
+                    "color": "#f88d5d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.name_en,
+                    "color": "#fa5c88",
+                    "pic": "",
+                    "height_":0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                  	"value": year.categories.education_culture_and_entertainment.categories.education_services.fifths[fifths],
+                    "name": year.categories.education_culture_and_entertainment.categories.education_services.name_he,
+                    "nameEn": year.categories.education_culture_and_entertainment.categories.education_services.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                }];
+              transport = [{
+                    "value": year.categories.transport_and_communications.categories.travel_abroad.fifths[fifths],
+                    "name": year.categories.transport_and_communications.categories.travel_abroad.name_he,
+                    "nameEn": year.categories.transport_and_communications.categories.travel_abroad.name_en,
+                    "color": "#ffccdd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.transport_and_communications.categories.post_telephone_and_communications.fifths[fifths],
+                    "name": year.categories.transport_and_communications.categories.post_telephone_and_communications.name_he,
+                    "nameEn": year.categories.transport_and_communications.categories.post_telephone_and_communications.name_en,
+                    "color": "#ccfddd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.transport_and_communications.categories.public_transport.fifths[fifths],
+                    "name": year.categories.transport_and_communications.categories.public_transport.name_he,
+                    "nameEn": year.categories.transport_and_communications.categories.public_transport.name_en,
+                    "color": "#fcd53d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.transport_and_communications.categories.expenditures_on_vehicles.fifths[fifths],
+                    "name": year.categories.transport_and_communications.categories.expenditures_on_vehicles.name_he,
+                    "nameEn": year.categories.transport_and_communications.categories.expenditures_on_vehicles.name_en,
+                    "color": "#f88d5d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.transport_and_communications.categories.other_expenditures.fifths[fifths],
+                    "name": year.categories.transport_and_communications.categories.other_expenditures.name_he,
+                    "nameEn": year.categories.transport_and_communications.categories.other_expenditures.name_en,
+                    "color": "#fa5c88",
+                    "pic": "",
+                    "height_":0,
+                    "ratio": 0
+                }, {
+                   "value":0
+                }, {
+                  	"value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                },{
+                   "value":0
+                }];
+             housing = [{
+                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_en,
+                    "color": "#ffccdd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.name_en,
+                    "color": "#ccfddd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_en,
+                    "color": "#fcd53d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_en,
+                    "color": "#f88d5d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_en,
+                    "color": "#fa5c88",
+                    "pic": "",
+                    "height_":0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.water.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_en,
+                    "color": "#f2ab4c",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                }, {
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_en,
+                    "color": "#f8c06d",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio": 0
+                },{
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_en,
+                    "color": "#f2fedd",
+                    "pic": "",
+                    "height_":0,
+                    "ratio":0 
+                },{
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_en,
+                    "color": "#fef6dd",
+                    "pic": "",
+                    "height_": 0,
+                    "ratio":0 
+                },{
+                   "value": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.fifths[fifths],
+                    "name": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_he,
+                    "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_en,
+                    "color": "#ff45dc",
+                    "pic": "",
+                    "height_":0 ,
+                    "ratio": 0
+                },{
+                   "value":0
+                }];
                 switch (selected) {
+                	
                     case "main":
                         selected = main;
                         category = year;
@@ -658,12 +924,31 @@
                     	selected = food;
                     	category = year.categories.food;
                     	break;
+                    case "Miscellaneous goods and services":	
+                    	selected = miscellaneous;
+                    	category = year.categories.miscellaneous_goods_and_services;
+                    	break;
+                    case "Education, culture and entertainment":	
+                    	selected = education;
+                    	category = year.categories.education_culture_and_entertainment;
+                    	break;
+                    case "Transport and communications":	
+                    	selected = transport;
+                    	category = year.categories.transport_and_communications;
+                    	break;
+                    case "Housing, Dwelling and household maintenance":	
+                    	selected = housing;
+                    	category = year.categories.housing_dwelling_and_household_maintenance;
+                    	break;		
+                    		
+                    	
+                    default:	alert(selected);	
                 }
 
                 root = {
                     'children': selected
                 };
-
+			
             }
 
             /////////////////////////////////////////////////////   

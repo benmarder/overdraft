@@ -1,0 +1,770 @@
+{
+  "name_en": "Consumption expenditures -total", 
+  "fifths": [
+    12228.0, 
+    12909.0, 
+    12096.0, 
+    10692.0, 
+    8873.0, 
+    5899.0, 
+    10139.0
+  ], 
+  "categories": {
+    "miscellaneous_goods_and_services": {
+      "name_en": "Miscellaneous goods and services", 
+      "fifths": [
+        619.0, 
+        501.0, 
+        541.0, 
+        471.0, 
+        397.0, 
+        296.0, 
+        457.0
+      ], 
+      "categories": {
+        "wallets_bags_suitcases_etc": {
+          "name_en": "Wallets, bags, suitcases etc.", 
+          "fifths": [
+            20.0, 
+            15.0, 
+            14.0, 
+            16.0, 
+            8.0, 
+            4.0, 
+            12.0
+          ], 
+          "name_he": "\u05d0\u05e8\u05e0\u05e7\u05d9\u05dd, \u05ea\u05d9\u05e7\u05d9\u05dd, \u05de\u05d6\u05d5\u05d5\u05d3\u05d5\u05ea \u05d5\u05db\u05d3'"
+        }, 
+        "personal_articles_and_cosmetics": {
+          "name_en": "Personal articles and cosmetics", 
+          "fifths": [
+            162.0, 
+            178.0, 
+            178.0, 
+            153.0, 
+            120.0, 
+            68.0, 
+            139.0
+          ], 
+          "name_he": "\u05de\u05d5\u05e6\u05e8\u05d9\u05dd  - \u05d0\u05d9\u05e9\u05d9\u05d9\u05dd \u05d5\u05e7\u05d5\u05e1\u05de\u05d8\u05d9\u05e7\u05d4"
+        }, 
+        "organization_dues_and_donations": {
+          "name_en": "Organization dues and donations", 
+          "fifths": [
+            55.0, 
+            30.0, 
+            37.0, 
+            26.0, 
+            29.0, 
+            19.0, 
+            31.0
+          ], 
+          "name_he": "\u05de\u05e1\u05d9 \u05d0\u05e8\u05d2\u05d5\u05df \u05d5\u05ea\u05e8\u05d5\u05de\u05d5\u05ea"
+        }, 
+        "jewellery_and_watches": {
+          "name_en": "Jewellery and watches", 
+          "fifths": [
+            53.0, 
+            34.0, 
+            43.0, 
+            27.0, 
+            34.0, 
+            12.0, 
+            33.0
+          ], 
+          "name_he": "\u05ea\u05db\u05e9\u05d9\u05d8\u05d9\u05dd \u05d5\u05e9\u05e2\u05d5\u05e0\u05d9\u05dd"
+        }, 
+        "legal_and_other_services": {
+          "name_en": "Legal and other services", 
+          "fifths": [
+            90.0, 
+            61.0, 
+            80.0, 
+            54.0, 
+            68.0, 
+            97.0, 
+            74.0
+          ], 
+          "name_he": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05de\u05e9\u05e4\u05d8\u05d9\u05d9\u05dd \u05d5\u05d0\u05d7\u05e8\u05d9\u05dd"
+        }, 
+        "personal_services_and_cosmetics": {
+          "name_en": "Personal services and cosmetics", 
+          "fifths": [
+            42.0, 
+            62.0, 
+            58.0, 
+            53.0, 
+            53.0, 
+            27.0, 
+            49.0
+          ], 
+          "name_he": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd  - \u05d0\u05d9\u05e9\u05d9\u05d9\u05dd \u05d5\u05e7\u05d5\u05e1\u05de\u05d8\u05d9\u05e7\u05d4"
+        }, 
+        "cigarettes_tobacco_and_accessories": {
+          "name_en": "Cigarettes, tobacco and accessories", 
+          "fifths": [
+            192.0, 
+            117.0, 
+            123.0, 
+            136.0, 
+            82.0, 
+            69.0, 
+            114.0
+          ], 
+          "name_he": "\u05e1\u05d9\u05d2\u05e8\u05d9\u05d5\u05ea, \u05d8\u05d1\u05e7 \u05d5\u05e6\u05d5\u05e8\u05db\u05d9 \u05e2\u05d9\u05e9\u05d5\u05df"
+        }
+      }, 
+      "name_he": "\u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d5\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9\u05dd \u05d0\u05d7\u05e8\u05d9\u05dd"
+    }, 
+    "clothing_and_footwear": {
+      "name_en": "Clothing and footwear", 
+      "fifths": [
+        619.0, 
+        550.0, 
+        461.0, 
+        399.0, 
+        251.0, 
+        154.0, 
+        379.0
+      ], 
+      "categories": {
+        "men_s_outerwear": {
+          "name_en": "Men's outerwear", 
+          "fifths": [
+            123.0, 
+            98.0, 
+            72.0, 
+            70.0, 
+            46.0, 
+            34.0, 
+            69.0
+          ], 
+          "name_he": "\u05d4\u05dc\u05d1\u05e9\u05d4 \u05e2\u05dc\u05d9\u05d5\u05e0\u05d4 \u05dc\u05d2\u05d1\u05e8\u05d9\u05dd"
+        }, 
+        "miscellaneous_clothing_articles": {
+          "name_en": "Miscellaneous clothing articles", 
+          "fifths": [
+            10.0, 
+            6.0, 
+            8.0, 
+            6.0, 
+            4.0, 
+            6.0, 
+            6.0
+          ], 
+          "name_he": "\u05e6\u05d5\u05e8\u05db\u05d9 \u05d4\u05dc\u05d1\u05e9\u05d4 \u05e9\u05d5\u05e0\u05d9\u05dd"
+        }, 
+        "underwear_sleepwear_and_socks": {
+          "name_en": "Underwear, sleepwear and socks", 
+          "fifths": [
+            90.0, 
+            71.0, 
+            69.0, 
+            64.0, 
+            31.0, 
+            14.0, 
+            53.0
+          ], 
+          "name_he": "\u05dc\u05d1\u05e0\u05d9\u05dd, \u05d1\u05d2\u05d3\u05d9 \u05e9\u05d9\u05e0\u05d4 \u05d5\u05d2\u05e8\u05d1\u05d9\u05d9\u05dd"
+        }, 
+        "women_s_outerwear": {
+          "name_en": "Women's outerwear", 
+          "fifths": [
+            139.0, 
+            146.0, 
+            133.0, 
+            129.0, 
+            88.0, 
+            52.0, 
+            110.0
+          ], 
+          "name_he": "\u05d4\u05dc\u05d1\u05e9\u05d4 \u05e2\u05dc\u05d9\u05d5\u05e0\u05d4 \u05dc\u05e0\u05e9\u05d9\u05dd"
+        }, 
+        "footwear": {
+          "name_en": "Footwear", 
+          "fifths": [
+            149.0, 
+            130.0, 
+            105.0, 
+            80.0, 
+            61.0, 
+            44.0, 
+            89.0
+          ], 
+          "name_he": "\u05d4\u05e0\u05e2\u05dc\u05d4"
+        }, 
+        "children_s_and_babies_outerwear": {
+          "name_en": "Children's and babies' outerwear", 
+          "fifths": [
+            100.0, 
+            92.0, 
+            66.0, 
+            41.0, 
+            12.0, 
+            4.0, 
+            46.0
+          ], 
+          "name_he": "\u05d4\u05dc\u05d1\u05e9\u05d4 \u05e2\u05dc\u05d9\u05d5\u05e0\u05d4 \u05dc\u05d9\u05dc\u05d3\u05d9\u05dd \u05d5\u05ea\u05d9\u05e0\u05d5\u05e7\u05d5\u05ea"
+        }
+      }, 
+      "name_he": "\u05d4\u05dc\u05d1\u05e9\u05d4 \u05d5\u05d4\u05e0\u05e2\u05dc\u05d4"
+    }, 
+    "housing_dwelling_and_household_maintenance": {
+      "name_en": "Housing, Dwelling and household maintenance", 
+      "fifths": [
+        4026.0, 
+        4336.0, 
+        4247.0, 
+        3903.0, 
+        3469.0, 
+        2761.0, 
+        3731.0
+      ], 
+      "categories": {
+        "furniture_and_household_equipment": {
+          "name_en": "Furniture and household equipment", 
+          "fifths": [
+            539.0, 
+            515.0, 
+            530.0, 
+            460.0, 
+            324.0, 
+            209.0, 
+            413.0
+          ], 
+          "name_he": "\u05e8\u05d9\u05d4\u05d5\u05d8 \u05d5\u05e6\u05d9\u05d5\u05d3 \u05dc\u05d1\u05d9\u05ea"
+        }, 
+        "other_housing_expenditures": {
+          "name_en": "Other housing expenditures", 
+          "fifths": [
+            44.0, 
+            56.0, 
+            51.0, 
+            55.0, 
+            61.0, 
+            39.0, 
+            52.0
+          ], 
+          "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d5\u05ea \u05d3\u05d9\u05d5\u05e8 \u05d0\u05d7\u05e8\u05d5\u05ea"
+        }, 
+        "monthly_rent": {
+          "name_en": "Monthly rent", 
+          "fifths": [
+            264.0, 
+            247.0, 
+            404.0, 
+            494.0, 
+            531.0, 
+            573.0, 
+            440.0
+          ], 
+          "name_he": "\u05e9\u05db\u05e8 \u05d3\u05d9\u05e8\u05d4 \u05d7\u05d5\u05d3\u05e9\u05d9"
+        }, 
+        "maintenance_and_renovation": {
+          "name_en": "Maintenance and renovation", 
+          "fifths": [
+            117.0, 
+            115.0, 
+            140.0, 
+            130.0, 
+            125.0, 
+            100.0, 
+            122.0
+          ], 
+          "name_he": "\u05d0\u05d7\u05d6\u05e7\u05d4 \u05d5\u05e9\u05d9\u05e4\u05d5\u05e8 \u05d4\u05d1\u05d9\u05ea"
+        }, 
+        "water": {
+          "name_en": "Water", 
+          "fifths": [
+            141.0, 
+            126.0, 
+            116.0, 
+            94.0, 
+            72.0, 
+            47.0, 
+            94.0
+          ], 
+          "name_he": "\u05de\u05d9\u05dd"
+        }, 
+        "miscellaneous_household_articles": {
+          "name_en": "Miscellaneous household articles", 
+          "fifths": [
+            125.0, 
+            125.0, 
+            102.0, 
+            83.0, 
+            70.0, 
+            45.0, 
+            87.0
+          ], 
+          "name_he": "\u05e6\u05d5\u05e8\u05db\u05d9 \u05de\u05e9\u05e7 \u05d1\u05d9\u05ea \u05e9\u05d5\u05e0\u05d9\u05dd"
+        }, 
+        "domestic_help": {
+          "name_en": "Domestic help", 
+          "fifths": [
+            93.0, 
+            179.0, 
+            199.0, 
+            194.0, 
+            158.0, 
+            85.0, 
+            152.0
+          ], 
+          "name_he": "\u05e2\u05d6\u05e8\u05d4 \u05d1\u05d1\u05d9\u05ea"
+        }, 
+        "electricity_gas_and_fuel_for_dwelling": {
+          "name_en": "Electricity, gas and fuel for dwelling", 
+          "fifths": [
+            480.0, 
+            425.0, 
+            390.0, 
+            327.0, 
+            262.0, 
+            165.0, 
+            326.0
+          ], 
+          "name_he": "\u05d7\u05e9\u05de\u05dc, \u05d2\u05d6 \u05d5\u05d3\u05dc\u05e7 \u05dc\u05d1\u05d9\u05ea"
+        }, 
+        "municipal_property_taxes_arnona": {
+          "name_en": "Municipal property taxes (Arnona)", 
+          "fifths": [
+            244.0, 
+            302.0, 
+            286.0, 
+            250.0, 
+            197.0, 
+            127.0, 
+            228.0
+          ], 
+          "name_he": "\u05de\u05e1\u05d9\u05dd \u05e2\u05d9\u05e8\u05d5\u05e0\u05d9\u05d9\u05dd (\u05d0\u05e8\u05e0\u05d5\u05e0\u05d4)"
+        }, 
+        "housing_consumption_in_kind": {
+          "name_en": "Housing consumption in kind", 
+          "fifths": [
+            1946.0, 
+            2228.0, 
+            2009.0, 
+            1796.0, 
+            1653.0, 
+            1363.0, 
+            1798.0
+          ], 
+          "name_he": "\u05e6\u05e8\u05d9\u05db\u05ea \u05d3\u05d9\u05d5\u05e8 \u05d1\u05e2\u05d9\u05df"
+        }
+      }, 
+      "name_he": "\u05d3\u05d9\u05d5\u05e8, \u05d0\u05d7\u05d6\u05e7\u05ea  \u05d4\u05d3\u05d9\u05e8\u05d4 \u05d5\u05de\u05e9\u05e7 \u05d4\u05d1\u05d9\u05ea"
+    }, 
+    "food": {
+      "name_en": "Food", 
+      "fifths": [
+        2559.0, 
+        2238.0, 
+        1966.0, 
+        1700.0, 
+        1421.0, 
+        849.0, 
+        1706.0
+      ], 
+      "categories": {
+        "miscellaneous_food_products": {
+          "name_en": "Miscellaneous food products", 
+          "fifths": [
+            199.0, 
+            187.0, 
+            175.0, 
+            157.0, 
+            105.0, 
+            54.0, 
+            139.0
+          ], 
+          "name_he": "\u05de\u05d5\u05e6\u05e8\u05d9 \u05de\u05d6\u05d5\u05df \u05e9\u05d5\u05e0\u05d9\u05dd"
+        }, 
+        "bread_cereals_and_pastry_products": {
+          "name_en": "Bread, cereals and pastry products", 
+          "fifths": [
+            436.0, 
+            375.0, 
+            301.0, 
+            231.0, 
+            175.0, 
+            101.0, 
+            252.0
+          ], 
+          "name_he": "\u05dc\u05d7\u05dd, \u05d3\u05d2\u05e0\u05d9\u05dd \u05d5\u05de\u05d5\u05e6\u05e8\u05d9 \u05d1\u05e6\u05e7"
+        }, 
+        "fish": {
+          "name_en": "Fish", 
+          "fifths": [
+            88.0, 
+            57.0, 
+            53.0, 
+            61.0, 
+            58.0, 
+            33.0, 
+            57.0
+          ], 
+          "name_he": "\u05d3\u05d2\u05d9\u05dd"
+        }, 
+        "vegetables_and_fruit": {
+          "name_en": "Vegetables and fruit", 
+          "fifths": [
+            527.0, 
+            449.0, 
+            383.0, 
+            347.0, 
+            309.0, 
+            165.0, 
+            347.0
+          ], 
+          "name_he": "\u05d9\u05e8\u05e7\u05d5\u05ea \u05d5\u05e4\u05d9\u05e8\u05d5\u05ea"
+        }, 
+        "meals_away_from_home": {
+          "name_en": "Meals away from home", 
+          "fifths": [
+            158.0, 
+            229.0, 
+            229.0, 
+            201.0, 
+            184.0, 
+            175.0, 
+            196.0
+          ], 
+          "name_he": "\u05d0\u05e8\u05d5\u05d7\u05d5\u05ea \u05de\u05d7\u05d5\u05e5 \u05dc\u05d1\u05d9\u05ea"
+        }, 
+        "milk_milk_products_and_eggs": {
+          "name_en": "Milk, milk products and eggs", 
+          "fifths": [
+            359.0, 
+            329.0, 
+            293.0, 
+            251.0, 
+            210.0, 
+            122.0, 
+            250.0
+          ], 
+          "name_he": "\u05d7\u05dc\u05d1 \u05d5\u05de\u05d5\u05e6\u05e8\u05d9\u05d5, \u05d1\u05d9\u05e6\u05d9\u05dd"
+        }, 
+        "meat_and_poultry": {
+          "name_en": "Meat and poultry", 
+          "fifths": [
+            480.0, 
+            362.0, 
+            292.0, 
+            245.0, 
+            207.0, 
+            98.0, 
+            263.0
+          ], 
+          "name_he": "\u05d1\u05e9\u05e8 \u05d5\u05e2\u05d5\u05e4\u05d5\u05ea"
+        }, 
+        "vegetable_oils_and_products": {
+          "name_en": "Vegetable oils and products", 
+          "fifths": [
+            56.0, 
+            40.0, 
+            36.0, 
+            31.0, 
+            33.0, 
+            16.0, 
+            34.0
+          ], 
+          "name_he": "\u05e9\u05de\u05e0\u05d9\u05dd \u05e6\u05de\u05d7\u05d9\u05d9\u05dd \u05d5\u05de\u05d5\u05e6\u05e8\u05d9\u05d4\u05dd"
+        }, 
+        "soft_drinks": {
+          "name_en": "Soft drinks", 
+          "fifths": [
+            140.0, 
+            109.0, 
+            96.0, 
+            87.0, 
+            62.0, 
+            36.0, 
+            83.0
+          ], 
+          "name_he": "\u05de\u05e9\u05e7\u05d0\u05d5\u05ea \u05e7\u05dc\u05d9\u05dd"
+        }, 
+        "sugar_and_sugar_products": {
+          "name_en": "Sugar and sugar products", 
+          "fifths": [
+            93.0, 
+            77.0, 
+            74.0, 
+            56.0, 
+            43.0, 
+            30.0, 
+            59.0
+          ], 
+          "name_he": "\u05e1\u05d5\u05db\u05e8 \u05d5\u05de\u05d5\u05e6\u05e8\u05d9\u05d5"
+        }, 
+        "alcoholic_beverages": {
+          "name_en": "Alcoholic beverages", 
+          "fifths": [
+            22.0, 
+            24.0, 
+            33.0, 
+            33.0, 
+            35.0, 
+            20.0, 
+            29.0
+          ], 
+          "name_he": "\u05de\u05e9\u05e7\u05d0\u05d5\u05ea \u05d0\u05dc\u05db\u05d5\u05d4\u05d5\u05dc\u05d9\u05d9\u05dd"
+        }
+      }, 
+      "name_he": "\u05de\u05d6\u05d5\u05df"
+    }, 
+    "health": {
+      "name_en": "Health", 
+      "fifths": [
+        482.0, 
+        532.0, 
+        467.0, 
+        495.0, 
+        540.0, 
+        395.0, 
+        485.0
+      ], 
+      "categories": {
+        "expenditures_on_health_services": {
+          "name_en": "Expenditures on health services", 
+          "fifths": [
+            42.0, 
+            66.0, 
+            53.0, 
+            69.0, 
+            60.0, 
+            75.0, 
+            61.0
+          ], 
+          "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d5\u05ea \u05dc\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
+        }, 
+        "dental_treatment": {
+          "name_en": "Dental treatment", 
+          "fifths": [
+            209.0, 
+            204.0, 
+            142.0, 
+            140.0, 
+            146.0, 
+            98.0, 
+            151.0
+          ], 
+          "name_he": "\u05e8\u05d9\u05e4\u05d5\u05d9 \u05e9\u05d9\u05e0\u05d9\u05d9\u05dd"
+        }, 
+        "other_expenditures_on_health": {
+          "name_en": "Other expenditures on health", 
+          "fifths": [
+            130.0, 
+            135.0, 
+            149.0, 
+            166.0, 
+            218.0, 
+            153.0, 
+            164.0
+          ], 
+          "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d5\u05ea \u05d0\u05d7\u05e8\u05d5\u05ea \u05dc\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
+        }, 
+        "health_insurance": {
+          "name_en": "Health insurance", 
+          "fifths": [
+            101.0, 
+            127.0, 
+            123.0, 
+            120.0, 
+            115.0, 
+            69.0, 
+            109.0
+          ], 
+          "name_he": "\u05d1\u05d9\u05d8\u05d5\u05d7 \u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
+        }
+      }, 
+      "name_he": "\u05d1\u05e8\u05d9\u05d0\u05d5\u05ea"
+    }, 
+    "transport_and_communication": {
+      "name_en": "Transport and communication", 
+      "fifths": [
+        2081.0, 
+        2744.0, 
+        2551.0, 
+        2252.0, 
+        1824.0, 
+        929.0, 
+        2011.0
+      ], 
+      "categories": {
+        "travel_abroad": {
+          "name_en": "Travel abroad", 
+          "fifths": [
+            177.0, 
+            397.0, 
+            315.0, 
+            336.0, 
+            410.0, 
+            164.0, 
+            306.0
+          ], 
+          "name_he": "\u05e0\u05e1\u05d9\u05e2\u05d4 \u05dc\u05d7\u05d5\u05e5 \u05dc\u05d0\u05e8\u05e5"
+        }, 
+        "post_telephone_and_communication": {
+          "name_en": "Post, telephone and communication", 
+          "fifths": [
+            554.0, 
+            591.0, 
+            523.0, 
+            476.0, 
+            318.0, 
+            217.0, 
+            426.0
+          ], 
+          "name_he": "\u05d3\u05d5\u05d0\u05e8, \u05d8\u05dc\u05e4\u05d5\u05df \u05d5\u05ea\u05e7\u05e9\u05d5\u05e8\u05ea"
+        }, 
+        "public_transport": {
+          "name_en": "Public transport", 
+          "fifths": [
+            157.0, 
+            103.0, 
+            98.0, 
+            120.0, 
+            106.0, 
+            75.0, 
+            107.0
+          ], 
+          "name_he": "\u05e0\u05e1\u05d9\u05e2\u05d4 \u05d1\u05ea\u05d7\u05d1\u05d5\u05e8\u05d4 \u05e6\u05d9\u05d1\u05d5\u05e8\u05d9\u05ea"
+        }, 
+        "expenditures_on_vehicles": {
+          "name_en": "Expenditures on vehicles", 
+          "fifths": [
+            1125.0, 
+            1604.0, 
+            1566.0, 
+            1279.0, 
+            965.0, 
+            461.0, 
+            1133.0
+          ], 
+          "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d5\u05ea \u05dc\u05db\u05dc\u05d9 \u05e8\u05db\u05d1"
+        }, 
+        "other_expenditures": {
+          "name_en": "Other expenditures", 
+          "fifths": [
+            67.0, 
+            49.0, 
+            49.0, 
+            42.0, 
+            26.0, 
+            12.0, 
+            38.0
+          ], 
+          "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d5\u05ea \u05d0\u05d7\u05e8\u05d5\u05ea"
+        }
+      }, 
+      "name_he": "\u05ea\u05d7\u05d1\u05d5\u05e8\u05d4 \u05d5\u05ea\u05e7\u05e9\u05d5\u05e8\u05ea"
+    }, 
+    "education_culture_and_entertainment": {
+      "name_en": "Education, culture and entertainment", 
+      "fifths": [
+        1842.0, 
+        2007.0, 
+        1864.0, 
+        1471.0, 
+        972.0, 
+        516.0, 
+        1370.0
+      ], 
+      "categories": {
+        "computer_internet_etc": {
+          "name_en": "Computer, internet etc.", 
+          "fifths": [
+            79.0, 
+            111.0, 
+            109.0, 
+            80.0, 
+            57.0, 
+            41.0, 
+            77.0
+          ], 
+          "name_he": "\u05de\u05d7\u05e9\u05d1, \u05d0\u05d9\u05e0\u05d8\u05e8\u05e0\u05d8 \u05d5\u05de\u05d5\u05e6\u05e8\u05d9\u05d4\u05dd"
+        }, 
+        "hobbies_sport_and_camping_equipment": {
+          "name_en": "Hobbies, sport and camping equipment", 
+          "fifths": [
+            153.0, 
+            163.0, 
+            137.0, 
+            117.0, 
+            73.0, 
+            66.0, 
+            112.0
+          ], 
+          "name_he": "\u05ea\u05d7\u05d1\u05d9\u05d1\u05d9\u05dd, \u05e6\u05d9\u05d5\u05d3 \u05e1\u05e4\u05d5\u05e8\u05d8 \u05d5\u05de\u05d7\u05e0\u05d0\u05d5\u05ea"
+        }, 
+        "culture_sport_and_entertainment": {
+          "name_en": "Culture, sport and entertainment", 
+          "fifths": [
+            395.0, 
+            366.0, 
+            312.0, 
+            362.0, 
+            282.0, 
+            65.0, 
+            286.0
+          ], 
+          "name_he": "\u05de\u05d5\u05e4\u05e2\u05d9 \u05ea\u05e8\u05d1\u05d5\u05ea, \u05e1\u05e4\u05d5\u05e8\u05d8 \u05d5\u05d1\u05d9\u05d3\u05d5\u05e8"
+        }, 
+        "entertainment_durable_goods": {
+          "name_en": "Entertainment durable goods", 
+          "fifths": [
+            198.0, 
+            294.0, 
+            312.0, 
+            283.0, 
+            238.0, 
+            203.0, 
+            254.0
+          ], 
+          "name_he": "\u05de\u05d5\u05e6\u05e8\u05d9 \u05ea\u05e8\u05d1\u05d5\u05ea \u05d5\u05d1\u05d9\u05d3\u05d5\u05e8 \u05d1\u05e0\u05d9-\u05e7\u05d9\u05d9\u05de\u05d4"
+        }, 
+        "recreation_and_excursions": {
+          "name_en": "Recreation and excursions", 
+          "fifths": [
+            100.0, 
+            141.0, 
+            117.0, 
+            70.0, 
+            68.0, 
+            20.0, 
+            82.0
+          ], 
+          "name_he": "\u05d4\u05d1\u05e8\u05d0\u05d4, \u05e0\u05d5\u05e4\u05e9 \u05d5\u05d8\u05d9\u05d5\u05dc\u05d9\u05dd"
+        }, 
+        "newspapers_books_and_stationery": {
+          "name_en": "Newspapers, books and stationery", 
+          "fifths": [
+            102.0, 
+            120.0, 
+            95.0, 
+            71.0, 
+            74.0, 
+            39.0, 
+            80.0
+          ], 
+          "name_he": "\u05e2\u05d9\u05ea\u05d5\u05e0\u05d9\u05dd, \u05e1\u05e4\u05e8\u05d9\u05dd \u05d5\u05de\u05db\u05e9\u05d9\u05e8\u05d9 \u05db\u05ea\u05d9\u05d1\u05d4"
+        }, 
+        "education_services": {
+          "name_en": "Education services", 
+          "fifths": [
+            812.0, 
+            809.0, 
+            780.0, 
+            484.0, 
+            176.0, 
+            82.0, 
+            477.0
+          ], 
+          "name_he": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05d7\u05d9\u05e0\u05d5\u05da"
+        }
+      }, 
+      "name_he": "\u05d7\u05d9\u05e0\u05d5\u05da, \u05ea\u05e8\u05d1\u05d5\u05ea \u05d5\u05d1\u05d9\u05d3\u05d5\u05e8"
+    }
+  }, 
+  "name_he": "\u05d4\u05d5\u05e6\u05d0\u05d4 \u05db\u05d5\u05dc\u05dc\u05ea \u05dc\u05ea\u05e6\u05e8\u05d5\u05db\u05ea - \u05e1\u05da \u05d4\u05db\u05dc"
+}
