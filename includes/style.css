@@ -3,7 +3,6 @@
 	padding:0px;
 	overflow: hidden;
 	color:#ffffff;
-
 }
 header, footer, nav, main, section, article, aside {
 	display: block;
@@ -22,7 +21,7 @@ li{
 	height:8%;
 }
 .personSelected,#one_person,#two_persons,#three_persons,#four_persons,#five_persons,#six_persons{
-	left:4%;
+	left:3.67%;
 }
 
 #share{
@@ -140,7 +139,6 @@ li{
 }
 #Transportandcommunications_x{
 		content:url("../images/x_food.svg");
-
 }
 #Food_x{
 	content:url("../images/x_food.svg");
@@ -151,12 +149,13 @@ li{
 .x_botton{
 	cursor:pointer;
 	position:absolute;
-	width:40px;
+	right:7.6%;
+	height:8%;
 }
 .x_botton:hover{
-	-webkit-animation:spin 2s linear infinite;
-    -moz-animation:spin 2s linear infinite;
-    animation:spin 2s linear infinite;
+	-webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
@@ -170,31 +169,36 @@ svg {
 .year{
 	position:absolute;
 	border-right:1px solid #000000;
-	font:20px font3,arial;
+	font:17px font3,arial;
+	padding-top:2px;
 	text-align:center;
 	
 }
 .year:hover,.yearSelected{
 	opacity:0.1; 
 	background-color:#FFFFFF;
-	color:#757575 ;	 
 }
-
+.year>p{
+	color:#d3d3d3 ;	 
+}
+section:hover>p,.yearSelected>P{
+	color:#252525;
+}
 
 .node.active {
 	border-width:90px;
 }
 
 .node { 
+	cursor:pointer;
 	 position: absolute;  
 }
-.node:hover{
-	opacity:0.6;
-}
+
 .node>img{
 	position:absolute;	
 }
-
+.description{
+}
 .text{
 	position:absolute;
 	bottom:0px;
@@ -202,14 +206,14 @@ svg {
 }
 
 .name{
-	font:27px font1,arial;
+	font:23px font1,arial;
 	display:block;
-	padding:0 0 5px 10px;
+	padding:0 15px 10px 15px;
 }
 .percent{
 	font:48px font2,arial;
 	display:block;
-	padding-left:10px;
+	padding-left:15px;
 }
 @font-face{
     font-family: font1;
@@ -221,12 +225,17 @@ svg {
 }
 @font-face{
     font-family: font3;
-    src: url("../includes/fonts/MarkPro-Heavy.ttf");
+    src: url("../includes/fonts/MarkPro-Light.ttf");
 }
 .area {
-	fill: #3e3e49;
+	fill: #4f4f59;
   	stroke-width:0;
   	
+}
+article{
+	direction:rtl;
+	width: 50%;
+    margin: 0 auto;
 }
 @-webkit-keyframes fadeInDown {
   0% {

@@ -8,31 +8,51 @@
 		<g>
 			<g>
 				<g>
-					<rect fill="#45B9F5" width="373" height="101"/>
-					<polygon fill="#D95246" points="389,117.064 373,99.817 373,0.835 389,18.936 					"/>
-					<polygon fill="#237B96" points="390.45,118 19.118,118 1.114,101 374.041,101 					"/>
+					<g>
+						<rect fill="#45B9F5" width="373" height="101"/>
+					</g>
+					<g>
+						<polygon fill="#D95246" points="389,117.064 373,99.817 373,0.835 389,18.936 						"/>
+					</g>
+					<g>
+						<polygon fill="#237B96" points="390.45,118 19.118,118 1.114,101 374.041,101 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
 		<g>
 			<g>
 				<g>
-					<rect x="268" fill="#CC72E1" width="105" height="101"/>
-					<polygon fill="#AB52C1" points="390,119.064 373,101.792 373,0 390,19.936 					"/>
-					<polygon fill="#7A3E89" points="390.45,118 287.626,118 269.621,101 374.041,101 					"/>
+					<g>
+						<rect x="268" fill="#CC72E1" width="105" height="101"/>
+					</g>
+					<g>
+						<polygon fill="#AB52C1" points="390,119.064 373,101.792 373,0 390,19.936 						"/>
+					</g>
+					<g>
+						<polygon fill="#7A3E89" points="390.45,118 287.626,118 269.621,101 374.041,101 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
 		<g>
 			<g>
 				<g>
-					<rect fill="#CC72E1" width="105" height="101"/>
-					<polygon fill="#7A3E89" points="122.45,118 19.118,118 1.114,101 106.042,101 					"/>
+					<g>
+						<rect fill="#CC72E1" width="105" height="101"/>
+					</g>
+					<g>
+						<polygon fill="#7A3E89" points="122.45,118 19.118,118 1.114,101 106.042,101 						"/>
+					</g>
 				</g>
 			</g>
 		</g>
 	</g>
-	<text transform="matrix(1 0 0 1 300.7163 62.4961)" fill="#FFFFFF" font-family="'AdumaFOT-Heavy'" font-size="45">+</text>
-	<text transform="matrix(1 0 0 1 32.3108 62.4961)" fill="#FFFFFF" font-family="'AdumaFOT-Heavy'" font-size="45">-</text>
+	<g>
+		<path fill="#FFFFFF" d="M325.105,52.776v4.59h-6.525v-4.59h-5.039v-6.524h5.039v-4.635h6.525v4.59h5.084v6.569H325.105z"/>
+	</g>
+	<g>
+		<path fill="#FFFFFF" d="M45.135,52.327v-5.67h15.975v5.67H45.135z"/>
+	</g>
 </g>
 </svg>

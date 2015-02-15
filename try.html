@@ -7,7 +7,49 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 	<script src="includes/d3.min.js"></script>
 	<script>
+//------------------------------
+ .call(function(d){
+                    	alert(level);
+                    	if(level == 1){
+                    		$(".node").append("article")
+                    		.attr("class","description").html(function(d){
+																						switch(d.nameEn){
+																		                    case "Health":
+																								return "ההוצאות על בריאות גדלות בהתמדה עם השנים, בעיקר בגלל שהישראלים קונים יותר ויותר ביטוחי בריאות, מה שמגדיל עוד יותר את ההוצאה על בריאות (כי אם כבר יש ביטוח, בואו נשתמש בו). עיקר ההוצאה הזו מתגלגל בסוף לכיס הרופאים";
+																		                    	break;
+																		                    case "Clothing and footwear": 
+																		                    	return "החלק היחסי של ההוצאה הזו יורד עם השנים, בעיקר בגלל ירידות מחירי הטקסטיל בישראל ובעולם. ככל שיותר בגדים מיוצרים במזרח, וככל שנכנסים לישראל יותר מותגים מחו״ל, כך המחירים יורדים";	
+																		                    	break;
+																		                    case "Food":
+																		                    	return "ההוצאה על מזון היא השלישית בגודל מבין ההוצאות של המשפחות בישראל. ככל שהמשפחה ענייה יותר, ועם יותר ילדים, כך החלק היחסי שהיא מוציאה על מזון מכלל ההוצאות שלה - גדול יותר. לכן, התייקרות מחירי המזון בשנים האחרונות פגעה בכולם, אבל באופן יחסי פגעה בעניים יותר";
+																		                    	break;
+																		                    case "Miscellaneous goods and services":	
+																		                    	break;
+																		                    case "Education, culture and entertainment":	
+																		                    	return "ההוצאה הרביעית בגודלה מקרב כלל ההוצאות. בעיקרון, הגודל היחסי של ההוצאה הזו פוחת עם השנים. אבל אם מסתכלים על הנתונים מקרוב, רואים שהחלק היחסי של ההוצאות על חינוך עולה. ככה זה כשההורים מרגישים שהמדינה לא נותנת מספיק, וקונים לילדים שלהם שיעורים פרטיים";
+																		                    	break;
+																		                    case "Transport and communications":	
+																		                    	return "ככל שמשפחה עשירה יותר, כך היא מוציאה יותר כסף על תחבורה ותקשורת. בגלל התגברות התחרות בענף הסלולר בשנתיים האחרונות, המחירים בקטגוריה זו הוזלו קצת, אבל עדיין מדובר בהוצאה השניה בגודלה אחרי ההוצאות על דיור";
+																		                    	break;
+																		                    case "Housing, Dwelling and household maintenance":
+																		                    	return "זו ההוצאה הגדולה ביותר של המשפחות בישראל, שמהווה בממוצע רבע מכל ההוצאות שלהן. ככל שמחירי הדיור עולים, גם החלק של ההוצאה על דיור עולה";
+																						}                    				
+                    																})
+                    		//	.on("mouseover",function(d){
+                    		//	$(this).find(".description").css("display","block");
+                    		//})
+                    		//.on('mouseout',function(){
+                    			//$(this).find(".description").css("display","none");
+                    		//})
+                    	}
+                    	else{
+                    		d3.selectAll("article").remove();
+                    	}	
+                   	 })
+                    	
 	
+	
+//	------------------------
     $.getJSON("includes/Data Sets/2003-2011.json", function(data) {
         //console.log(data.categories.housing.name_he);	   
         // sample data array

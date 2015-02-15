@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8">
   	<title>Home Page</title>
-	<link rel="stylesheet" href="includes/howPageStyle.css">
+	<link rel="stylesheet" href="includes/homePageStyle.css">
 	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-
- 
+	
 </head>
 <body>
 
@@ -18,10 +17,59 @@
  		<div class="center line"><img src="images/line.svg"></div>
  		<div class="center intro">כאן יהיה טקסט כלשהו לחפור על העבודה המדהימה שלנו</div>
  		<div class="center persons">?כמה נפשות אתם בבית</div>
- 		<div class="center number"><p>1</p><img src="images/Counting icon.svg" width="60%"></div>
+ 		<div class="center number">
+ 			<p>1</p>
+ 			<img src="images/Counting icon.svg" width="60%">
+ 			<div id="plus"></div>
+ 			<div id="minus"></div>
+ 		</div>
  		<div class="center confirm"><img src="images/confirm.svg" width="25%"></div>
+ 		
 	</div>
- 
+ <script>
+ 	var count=1;
+ 	$("#plus").click(function(){
+ 					
+			$(".number>img").attr("class","animated pulse");	
+ 											setTimeout(function(){
+												$(".number>img").removeClass("animated pulse"); 											
+ 											},300); 							if(count <= 5){
+ 								++count;
+ 								$(".number>p").text(function(){
+ 																if(count==6)
+ 																	return "6+";
+ 																return count;
+ 														});					
+ 							}
+ 					})
+ 					.hover(function(){
+ 							$(".number>img").attr("src","images/Counting icon_plus_hover.svg");
+ 						},
+ 						function(){
+ 							$(".number>img").attr("src","images/Counting icon.svg");
+ 						});	
+ 	$("#minus").click(function(){
+ 			$(".number>img").attr("class","animated pulse");	
+ 											setTimeout(function(){
+												$(".number>img").removeClass("animated pulse"); 											
+ 											},300);
+ 							if(count >1){
+ 								--count;
+ 								$(".number>p").text(count);
+ 							}
+ 					})
+ 				.hover(function(){
+ 							$(".number>img").attr("src","images/Counting icon_minus_hover.svg");
+ 						},
+ 						function(){
+ 							$(".number>img").attr("src","images/Counting icon.svg");
+ 						});
+ 																
+ 														 
+ 									
+ 			
+ 												
+ </script>
 </body>
 
 </html>
