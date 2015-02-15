@@ -97,7 +97,7 @@
 										}
 										else closePersonsNav();
 								});															
-            createTreemap("2011",window.location.search.match(/\d+/),"main");
+            createTreemap("2011",Math.abs(window.location.search.match(/\d+/)-6),"main");
             
             $(".personSelected").attr("id","personSelected"+window.location.search.match(/\d+/));
             $("#one_person").click(function(){currentFifth=5;changeLayout(currentYear,currentFifth,currentCategory);$(".personSelected").attr("id","personSelected1");});
