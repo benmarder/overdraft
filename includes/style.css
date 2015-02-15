@@ -227,6 +227,7 @@ section:hover>p,.yearSelected>P{
     font-family: font3;
     src: url("../includes/fonts/MarkPro-Light.ttf");
 }
+
 .area {
 	fill: #4f4f59;
   	stroke-width:0;

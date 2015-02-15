@@ -275,9 +275,7 @@
 						.attr("d",function(){return lineFunction(lineData);});
                
             }
-
-            ////////////////////////////////////////////////////////////////          	
-
+         	
             function position() {
 
                     this
@@ -296,11 +294,14 @@
 
                     	.style("height", function(d) {
                         return Math.max(0, d.dy) + "px";
-                    })
-                   
+                    })         
 
                     .select("img")
-                        .attr("height", function(d) { //new height= Square root(div area /(old height^2 * ratio)) * old height
+                        .attr("height", function(d) { 
+                        	if(d.nameEn=="Miscellaneous goods and services")
+                        		return 90;
+                        	
+                        	//new height= Square root(div area /(old height^2 * ratio)) * old height
                             return Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_;
                         })
 
@@ -308,14 +309,16 @@
                             return (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio;
                         })
                         .style("top", function(d) {
-                        	if(d.nameEn =="Health")
-                        		return "55px";
-                            if ((window.innerHeight-areaChartHeight) / d.dy > 2)
-                                return "6px";
+                        		
+                             if ((window.innerHeight-areaChartHeight) / d.dy > 2.65)
+                                return "7px";
                             return ((d.dy - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_)) / 2) + "px";
                         })
 
-                    .style("left", function(d) {
+                    .style("right", function(d) {
+                    	if(d.nameEn=="Clothing and footwear"){
+                        			return "3px";
+                        			}	
                         return ((d.dx - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio) / 2) + "px";
                     })
                     
@@ -333,7 +336,7 @@
                     				return "#b7913d";
                     			}	
                     		})
-                    	.style("font-size",function(d){if(d.dy<window.innerHeight/6)return "39px";})
+                    	.style("font-size",function(d){if(d.dy<window.innerHeight/5.5)return "39px";})
                     	.transition()
                         .duration(50)
                         .text(function(d) {
@@ -433,7 +436,7 @@
                 changeLayout($(this).attr("id"), currentFifth, currentCategory);
             });
 
-            //////////////////////////////////////////////////////////////////////////////////////            	   
+          	   
             function createTreemap(yearSelacted, fifths, selected) {
                 currentYear=yearSelacted;
                 currentFifth=fifths;
@@ -449,8 +452,8 @@
                     "nameEn": year.categories.food.name_en,
                     "color": "#cc72e1",
                     "pic": "images/chicken_icon.svg",
-                    "height_": 335,
-                    "ratio": 0.91044776
+                    "height_": 324,
+                    "ratio": 0.987654321
                 }, {
                     "value": year.categories.education_culture_and_entertainment.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.name_he,
@@ -465,40 +468,40 @@
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.name_en,
                     "color": "#42e8ce",
                     "pic": "images/diur_icon.svg",
-                    "height_": 499,
-                    "ratio": 0.87775551
+                    "height_": 493,
+                    "ratio": 0.878296146
                 }, {
                     "value": year.categories.miscellaneous_goods_and_services.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.name_en,
                     "color": "#45b9f5",
                     "pic": "images/cosmetics_icon.svg",
-                    "height_": 192,
-                    "ratio": 1.95833333
+                    "height_": 324,
+                    "ratio": 0.987654321
                 }, {
                     "value": year.categories.clothing_and_footwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.name_en,
                     "color": "#fdebcc",
                     "pic": "images/clothing_icon.svg",
-                    "height_": 229,
-                    "ratio": 1.83842795
+                    "height_": 185,
+                    "ratio": 1.72972973
                 }, {
                     "value": year.categories.health.fifths[fifths],
                     "name": year.categories.health.name_he,
                     "nameEn": year.categories.health.name_en,
                     "color": "#f39463",
                     "pic": "images/health_icon.svg",
-                    "height_": 55,
-                    "ratio": 2.8
+                    "height_": 60,
+                    "ratio": 3.333333333
                 }, {
                     "value": year.categories.transport_and_communications.fifths[fifths],
                     "name": year.categories.transport_and_communications.name_he,
                     "nameEn": year.categories.transport_and_communications.name_en,
                     "color": "#f37264",
                     "pic": "images/communication_transportation_icon.svg",
-                    "height_": 436,
-                    "ratio": 0.83027523
+                    "height_": 395,
+                    "ratio": 0.8101265823
                 },{
                 	"value":0
                   },{
@@ -597,7 +600,7 @@
                     "value": year.categories.food.categories.miscellaneous_food_products.fifths[fifths],
                     "name": year.categories.food.categories.miscellaneous_food_products.name_he,
                     "nameEn": year.categories.food.categories.miscellaneous_food_products.name_en,
-                    "color": "#ffccdd",
+                    "color": "#e4b2ef",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -605,7 +608,7 @@
                     "value": year.categories.food.categories.bread_cereals_and_pastry_products.fifths[fifths],
                     "name": year.categories.food.categories.bread_cereals_and_pastry_products.name_he,
                     "nameEn": year.categories.food.categories.bread_cereals_and_pastry_products.name_en,
-                    "color": "#ccfddd",
+                    "color": "#db9cea",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -613,7 +616,7 @@
                     "value": year.categories.food.categories.fish.fifths[fifths],
                     "name": year.categories.food.categories.fish.name_he,
                     "nameEn": year.categories.food.categories.fish.name_en,
-                    "color": "#fcd53d",
+                    "color": "#edcff5",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -621,7 +624,7 @@
                     "value": year.categories.food.categories.vegetables_and_fruit.fifths[fifths],
                     "name": year.categories.food.categories.vegetables_and_fruit.name_he,
                     "nameEn": year.categories.food.categories.vegetables_and_fruit.name_en,
-                    "color": "#f88d5d",
+                    "color": "#cc72e1",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -629,7 +632,7 @@
                    "value": year.categories.food.categories.meals_away_from_home.fifths[fifths],
                     "name": year.categories.food.categories.meals_away_from_home.name_he,
                     "nameEn": year.categories.food.categories.meals_away_from_home.name_en,
-                    "color": "#fa5c88",
+                    "color": "#e1aaed",
                     "pic": "",
                     "height_":0,
                     "ratio": 0
@@ -637,7 +640,7 @@
                    "value": year.categories.food.categories.milk_milk_products_and_eggs.fifths[fifths],
                     "name": year.categories.food.categories.milk_milk_products_and_eggs.name_he,
                     "nameEn": year.categories.food.categories.milk_milk_products_and_eggs.name_en,
-                    "color": "#f2ab4c",
+                    "color": "#d78fe7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -645,7 +648,7 @@
                    "value": year.categories.food.categories.meat_and_poultry.fifths[fifths],
                     "name": year.categories.food.categories.meat_and_poultry.name_he,
                     "nameEn": year.categories.food.categories.meat_and_poultry.name_en,
-                    "color": "#f8c06d",
+                    "color": "#d181e4",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -653,7 +656,7 @@
                    "value": year.categories.food.categories.vegetable_oils_and_products.fifths[fifths],
                     "name": year.categories.food.categories.vegetable_oils_and_products.name_he,
                     "nameEn": year.categories.food.categories.vegetable_oils_and_products.name_en,
-                    "color": "#f2fedd",
+                    "color": "#f3dcf8",
                     "pic": "",
                     "height_":0,
                     "ratio": 0 
@@ -661,7 +664,7 @@
                    "value": year.categories.food.categories.soft_drinks.fifths[fifths],
                     "name": year.categories.food.categories.soft_drinks.name_he,
                     "nameEn": year.categories.food.categories.soft_drinks.name_en,
-                    "color": "#fef6dd",
+                    "color": "#e8bff1",
                     "pic": "",
                     "height_": 0,
                     "ratio":0 
@@ -669,7 +672,7 @@
                    "value": year.categories.food.categories.sugar_and_sugar_products.fifths[fifths],
                     "name": year.categories.food.categories.sugar_and_sugar_products.name_he,
                     "nameEn": year.categories.food.categories.sugar_and_sugar_products.name_en,
-                    "color": "#ff45dc",
+                    "color": "#f0d5f6",
                     "pic": "",
                     "height_":0 ,
                     "ratio": 0
@@ -677,7 +680,7 @@
                    "value": year.categories.food.categories.alcoholic_beverages.fifths[fifths],
                     "name": year.categories.food.categories.alcoholic_beverages.name_he,
                     "nameEn": year.categories.food.categories.alcoholic_beverages.name_en,
-                    "color": "#ff12dd",
+                    "color": "#f7ebfb",
                     "pic": "",
                     "height_":0,
                     "ratio":0 
@@ -686,7 +689,7 @@
                     "value": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_en,
-                    "color": "#ffccdd",
+                    "color": "#79ccf6",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -694,7 +697,7 @@
                     "value": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_en,
-                    "color": "#ccfddd",
+                    "color": "#45b9f5",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -702,7 +705,7 @@
                     "value": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_en,
-                    "color": "#fcd53d",
+                    "color": "#e8f3f7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -710,7 +713,7 @@
                     "value": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_en,
-                    "color": "#f88d5d",
+                    "color": "#68c6f6",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -718,7 +721,7 @@
                    "value": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_en,
-                    "color": "#fa5c88",
+                    "color": "#d0ecf9",
                     "pic": "",
                     "height_":0,
                     "ratio": 0
@@ -726,7 +729,7 @@
                    "value": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_en,
-                    "color": "#f2ab4c",
+                    "color": "#bee5f8",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -734,7 +737,7 @@
                   	"value": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_en,
-                    "color": "#f2ab4c",
+                    "color": "#9cd9f7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -751,58 +754,58 @@
                     "value": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.computer_internet_etc.name_en,
-                    "color": "#ffccdd",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f4f2ed",
+                    "pic": "images/mahshev_internet.svg",
+                    "height_": 128,
+                    "ratio": 1.109375
                 }, {
                     "value": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.hobbies_sports_and_camping_equipment.name_en,
-                    "color": "#ccfddd",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f8e69c",
+                    "pic": "images/tahvivim_ziud_sport.svg",
+                    "height_": 145,
+                    "ratio": 1.6
                 }, {
                     "value": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_en,
-                    "color": "#fcd53d",
+                    "color": "#f9e17f",
                     "pic": "",
-                    "height_": 0,
+                    "height_":0 ,
                     "ratio": 0
                 }, {
                     "value": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_en,
-                    "color": "#f88d5d",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f7d546",
+                    "pic": "images/muzrei_tarbut_vebidur.svg",
+                    "height_": 236,
+                    "ratio": 1.525423729
                 }, {
                    "value": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.name_en,
-                    "color": "#fa5c88",
-                    "pic": "",
-                    "height_":0,
-                    "ratio": 0
+                    "color": "#f8ebb9",
+                    "pic": "images/havraa_nofesh.svg",
+                    "height_":167,
+                    "ratio": 1.089820359
                 }, {
                    "value": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.newspapers_books_and_stationery.name_en,
-                    "color": "#f2ab4c",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f7f0d6",
+                    "pic": "images/itonim_sfarim.svg",
+                    "height_": 104,
+                    "ratio": 2.125
                 }, {
                   	"value": year.categories.education_culture_and_entertainment.categories.education_services.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.education_services.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.education_services.name_en,
-                    "color": "#f2ab4c",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#ead478",
+                    "pic": "images/sherotei_hinuh.svg",
+                    "height_": 243,
+                    "ratio": 1.481481481
                 },{
                    "value":0
                 },{
@@ -816,23 +819,23 @@
                     "value": year.categories.transport_and_communications.categories.travel_abroad.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.travel_abroad.name_he,
                     "nameEn": year.categories.transport_and_communications.categories.travel_abroad.name_en,
-                    "color": "#ffccdd",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f28a7f",
+                    "pic": "images/nesia_lehuz_laarez.svg",
+                    "height_": 168,
+                    "ratio": 1.154761905
                 }, {
                     "value": year.categories.transport_and_communications.categories.post_telephone_and_communications.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.post_telephone_and_communications.name_he,
                     "nameEn": year.categories.transport_and_communications.categories.post_telephone_and_communications.name_en,
-                    "color": "#ccfddd",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f0a29a",
+                    "pic": "images/shirotei_doar_telephone_vetikshoret.svg",
+                    "height_": 315,
+                    "ratio": 0.5587301587
                 }, {
                     "value": year.categories.transport_and_communications.categories.public_transport.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.public_transport.name_he,
                     "nameEn": year.categories.transport_and_communications.categories.public_transport.name_en,
-                    "color": "#fcd53d",
+                    "color": "#eec6c2",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -840,15 +843,15 @@
                     "value": year.categories.transport_and_communications.categories.expenditures_on_vehicles.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.expenditures_on_vehicles.name_he,
                     "nameEn": year.categories.transport_and_communications.categories.expenditures_on_vehicles.name_en,
-                    "color": "#f88d5d",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "color": "#f37264",
+                    "pic": "images/hozaot_lekley_rehev.svg",
+                    "height_": 328,
+                    "ratio": 1.289634146
                 }, {
                    "value": year.categories.transport_and_communications.categories.other_expenditures.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.other_expenditures.name_he,
                     "nameEn": year.categories.transport_and_communications.categories.other_expenditures.name_en,
-                    "color": "#fa5c88",
+                    "color": "#eddedd",
                     "pic": "",
                     "height_":0,
                     "ratio": 0
@@ -869,7 +872,7 @@
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_en,
-                    "color": "#ffccdd",
+                    "color": "#58d8bf",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -877,7 +880,7 @@
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.name_en,
-                    "color": "#ccfddd",
+                    "color": "#d4f6ee",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -885,7 +888,7 @@
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_en,
-                    "color": "#fcd53d",
+                    "color": "#44d3b7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -893,7 +896,7 @@
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_en,
-                    "color": "#f88d5d",
+                    "color": "#2eceaf",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -901,7 +904,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_en,
-                    "color": "#fa5c88",
+                    "color": "#aaeadf",
                     "pic": "",
                     "height_":0,
                     "ratio": 0
@@ -909,7 +912,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.water.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_en,
-                    "color": "#f2ab4c",
+                    "color": "#c1f0e7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -917,7 +920,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_en,
-                    "color": "#f8c06d",
+                    "color": "#ebfaf7",
                     "pic": "",
                     "height_": 0,
                     "ratio": 0
@@ -925,7 +928,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_en,
-                    "color": "#f2fedd",
+                    "color": "#96e6d7",
                     "pic": "",
                     "height_":0,
                     "ratio":0 
@@ -933,7 +936,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_en,
-                    "color": "#fef6dd",
+                    "color": "#6dddc7",
                     "pic": "",
                     "height_": 0,
                     "ratio":0 
@@ -941,7 +944,7 @@
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_en,
-                    "color": "#ff45dc",
+                    "color": "#8aecdd",
                     "pic": "",
                     "height_":0 ,
                     "ratio": 0

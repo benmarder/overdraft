@@ -23,39 +23,38 @@ body{
 	border:none;
 	cursor:pointer;
 }
+#submit:hover{
+	opacity:0.5;
+}	
 .center{
 	text-align: center;
 }
 .persons{
-	font-size: 18px;
+	font: 20px font1,Arial;
 	margin-top: 44px;
-	padding-bottom: 22px;
+	padding-bottom: 15px;
 }
 .line{
 	margin-top: 20px;
 	padding-bottom: 40px;
 }
 .intro{
-	font-size: 16px;
+	font: 16px font4,Arial;
 }
 .title{
-	font-size: 18px;
+	font: 18px font4,Arial;
 	padding-bottom: 40px;
 }
 .confirm{
 	margin-top: 27px;
 }
-.confirm > img{
-	cursor: pointer;
-}
-.confirm > img:hover{
-	opacity:0.5;
-}
+
 .number > p{
-	z-index:1000;
+	z-index:1;
 	position:absolute;
 	left: 48%;
-	font-size: 20px;
+	font: 26px font1,Arial;
+	
 }
 .number{
 	position: relative;
@@ -106,6 +105,14 @@ body{
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
 }
-textarea:focus, input:focus{
+*:focus {
     outline: 0;
+}
+@font-face{
+    font-family: font1;
+    src: url("../includes/fonts/AdumaFOT-Heavy.otf"); 
+}
+@font-face{
+    font-family: font4;
+    src: url("../includes/fonts/Alef-Regular.ttf"); 
 }
