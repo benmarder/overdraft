@@ -4,11 +4,12 @@
   <meta charset="utf-8">
   	<title>Home Page</title>
 	<link rel="stylesheet" href="includes/homePageStyle.css">
-	    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	 <script src="includes/count.js"></script>
+	 <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
-
+	<form action="layout.html" method="get">
 	<a href="http://twitter.com/share?text=בזבזת&url=http://www.google.com"></a>
 	<a href="http://www.facebook.com/sharer.php?u=http://www.google.com"></a>
  	<div class="main">
@@ -23,53 +24,15 @@
  			<div id="plus"></div>
  			<div id="minus"></div>
  		</div>
- 		<div class="center confirm"><img src="images/confirm.svg" width="25%"></div>
  		
+    	<input id="val" type="hidden" name="count" value="55">
+    
+ 		<div class="center confirm">
+ 			<input id="submit" type="submit" value="">
+ 		</div>
+ 	</form>		
 	</div>
- <script>
- 	var count=1;
- 	$("#plus").click(function(){
- 					
-			$(".number>img").attr("class","animated pulse");	
- 											setTimeout(function(){
-												$(".number>img").removeClass("animated pulse"); 											
- 											},300); 							if(count <= 5){
- 								++count;
- 								$(".number>p").text(function(){
- 																if(count==6)
- 																	return "6+";
- 																return count;
- 														});					
- 							}
- 					})
- 					.hover(function(){
- 							$(".number>img").attr("src","images/Counting icon_plus_hover.svg");
- 						},
- 						function(){
- 							$(".number>img").attr("src","images/Counting icon.svg");
- 						});	
- 	$("#minus").click(function(){
- 			$(".number>img").attr("class","animated pulse");	
- 											setTimeout(function(){
-												$(".number>img").removeClass("animated pulse"); 											
- 											},300);
- 							if(count >1){
- 								--count;
- 								$(".number>p").text(count);
- 							}
- 					})
- 				.hover(function(){
- 							$(".number>img").attr("src","images/Counting icon_minus_hover.svg");
- 						},
- 						function(){
- 							$(".number>img").attr("src","images/Counting icon.svg");
- 						});
- 																
- 														 
- 									
- 			
- 												
- </script>
+
 </body>
 
 </html>

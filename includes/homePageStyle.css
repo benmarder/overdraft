@@ -15,6 +15,14 @@ body{
 
     margin: auto;
 }
+#submit{
+	background: url("../images/confirm.svg")no-repeat;
+	background-size:100%;
+	height:50px; 
+	width:25%;
+	border:none;
+	cursor:pointer;
+}
 .center{
 	text-align: center;
 }
@@ -37,7 +45,12 @@ body{
 .confirm{
 	margin-top: 27px;
 }
-
+.confirm > img{
+	cursor: pointer;
+}
+.confirm > img:hover{
+	opacity:0.5;
+}
 .number > p{
 	z-index:1000;
 	position:absolute;
@@ -92,4 +105,7 @@ body{
           animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
           animation-fill-mode: both;
+}
+textarea:focus, input:focus{
+    outline: 0;
 }

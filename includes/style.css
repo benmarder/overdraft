@@ -15,7 +15,7 @@ header, footer, nav, main, section, article, aside {
 	content:url("../images/logo.svg");
 	height:8%;
 }
-li{
+li,li>a{
 	position:absolute;
 	cursor:pointer;
 	height:8%;
