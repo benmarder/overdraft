@@ -27,7 +27,8 @@
 							.click(function(){
 										changeLayout(lastYear,lastFifth,"main");
 										changeArea();
-										$(this).attr("id","main_x");
+										$(this).attr("id","main_x")
+												.attr("class","x_botton");
 									});
 			var linksOff=1;
 			var links2Off=1;	
@@ -58,6 +59,9 @@
 															$("#five_persons").attr("class","animated fadeInDown");
 															setTimeout(function(){	
 																$("#six_persons").attr("class","animated fadeInDown");
+																	setTimeout(function(){	
+																		$("#average").attr("class","animated fadeInDown");
+																}, 50);	
 															}, 50);	
 														}, 50);	
 													}, 50);	
@@ -75,6 +79,9 @@
 															$("#five_persons").attr("class","animated fadeOutUpBig");
 															setTimeout(function(){	
 																$("#six_persons").attr("class","animated fadeOutUpBig");
+																setTimeout(function(){	
+																		$("#average").attr("class","animated fadeOutUpBig");
+																}, 50);
 															}, 50);	
 														}, 50);	
 													}, 50);	
@@ -100,6 +107,7 @@
             createTreemap("2011",Math.abs(window.location.search.match(/\d+/)-6),"main");
             
             $(".personSelected").attr("id","personSelected"+window.location.search.match(/\d+/));
+            $("#average").click(function(){currentFifth=6;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","selectedAverage");});
             $("#one_person").click(function(){currentFifth=5;changeLayout(currentYear,currentFifth,currentCategory);$(".personSelected").attr("id","personSelected1");});
             $("#two_persons").click(function(){currentFifth=4;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected2");});
             $("#three_persons").click(function(){currentFifth=3;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected3");});
@@ -169,18 +177,19 @@
             $("#"+currentYear).addClass("yearSelected");
 
             function onClick(d) {
-            	//	alert(d.value+"and total ="+category.fifths[currentFifth]);
 				if(level!=1)
 					return;
 				lastYear=currentYear;
 				lastFifth=currentFifth;
-				$(".x_botton").attr("id",d.nameEn.replace(/ /g,'').replace(/,/g,'')+"_x");
+				$(".x_botton").attr("class","animated fadeInDown x_botton").attr("id",d.nameEn.replace(/ /g,'').replace(/,/g,'')+"_x");
+				$(".x_botton").hover(function(){$(this).attr("class","x_botton x_botton_hover");},function(){$(this).attr("class","x_botton");});	
 				changeLayout(currentYear, currentFifth, d.nameEn);
 				changeArea();
+				$(".info").remove();
 			
             }
             
-
+			
             function appendText_percent() {
                 this.append("text")
                     .attr("class", "percent");
@@ -276,8 +285,17 @@
                
             }
          	
-            function position() {
-
+            function position(d) {
+            	var test=this;
+				if(level==1){
+					this.append("div").attr("class","info")
+										.on('mouseover', function(d){d3.select("#text_box")
+										.style("display","block");});
+										test.select("h4")
+										.html(function(d){
+											return ((Math.round((d.value / category.fifths[currentFifth]) * 100)) + "%");
+										});
+				}	
                     this
                         .style("background", function(d) {
                             return d.color;
@@ -295,7 +313,7 @@
                     	.style("height", function(d) {
                         return Math.max(0, d.dy) + "px";
                     })         
-
+				
                     .select("img")
                         .attr("height", function(d) { 
                         	if(d.nameEn=="Miscellaneous goods and services")
@@ -453,7 +471,8 @@
                     "color": "#cc72e1",
                     "pic": "images/chicken_icon.svg",
                     "height_": 324,
-                    "ratio": 0.987654321
+                    "ratio": 0.987654321,
+                    "info":"ההוצאה על מזון היא השלישית בגודל מבין ההוצאות של המשפחות בישראל. ככל שהמשפחה ענייה יותר, ועם יותר ילדים, כך החלק היחסי שהיא מוציאה על מזון מכלל ההוצאות שלה - גדול יותר. לכן, התייקרות מחירי המזון בשנים האחרונות פגעה בכולם, אבל באופן יחסי פגעה בעניים יותר"
                 }, {
                     "value": year.categories.education_culture_and_entertainment.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.name_he,
@@ -461,7 +480,8 @@
                     "color": "#f9dc62",
                     "pic": "images/culture_and_education_icon.svg",
                     "height_": 240,
-                    "ratio": 0.85833333
+                    "ratio": 0.85833333,
+                    "info":"ההוצאה הרביעית בגודלה מקרב כלל ההוצאות. בעיקרון, הגודל היחסי של ההוצאה הזו פוחת עם השנים. אבל אם מסתכלים על הנתונים מקרוב, רואים שהחלק היחסי של ההוצאות על חינוך עולה. ככה זה כשההורים מרגישים שהמדינה לא נותנת מספיק, וקונים לילדים שלהם שיעורים פרטיים"
                 }, {
                     "value": year.categories.housing_dwelling_and_household_maintenance.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.name_he,
@@ -469,7 +489,8 @@
                     "color": "#42e8ce",
                     "pic": "images/diur_icon.svg",
                     "height_": 493,
-                    "ratio": 0.878296146
+                    "ratio": 0.878296146,
+                    "info":"זו ההוצאה הגדולה ביותר של המשפחות בישראל, שמהווה בממוצע רבע מכל ההוצאות שלהן. ככל שמחירי הדיור עולים, גם החלק של ההוצאה על דיור עולה"
                 }, {
                     "value": year.categories.miscellaneous_goods_and_services.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.name_he,
@@ -485,7 +506,8 @@
                     "color": "#fdebcc",
                     "pic": "images/clothing_icon.svg",
                     "height_": 185,
-                    "ratio": 1.72972973
+                    "ratio": 1.72972973,
+                    "info":"החלק היחסי של ההוצאה הזו יורד עם השנים, בעיקר בגלל ירידות מחירי הטקסטיל בישראל ובעולם. ככל שיותר בגדים מיוצרים במזרח, וככל שנכנסים לישראל יותר מותגים מחו״ל, כך המחירים יורדים"
                 }, {
                     "value": year.categories.health.fifths[fifths],
                     "name": year.categories.health.name_he,
@@ -493,7 +515,8 @@
                     "color": "#f39463",
                     "pic": "images/health_icon.svg",
                     "height_": 60,
-                    "ratio": 3.333333333
+                    "ratio": 3.333333333,
+                    "info":"ההוצאות על בריאות גדלות בהתמדה עם השנים, בעיקר בגלל שהישראלים קונים יותר ויותר ביטוחי בריאות, מה שמגדיל עוד יותר את ההוצאה על בריאות (כי אם כבר יש ביטוח, בואו נשתמש בו). עיקר ההוצאה הזו מתגלגל בסוף לכיס הרופאים"
                 }, {
                     "value": year.categories.transport_and_communications.fifths[fifths],
                     "name": year.categories.transport_and_communications.name_he,
@@ -501,7 +524,8 @@
                     "color": "#f37264",
                     "pic": "images/communication_transportation_icon.svg",
                     "height_": 395,
-                    "ratio": 0.8101265823
+                    "ratio": 0.8101265823,
+                    "info":"ככל שמשפחה עשירה יותר, כך היא מוציאה יותר כסף על תחבורה ותקשורת. בגלל התגברות התחרות בענף הסלולר בשנתיים האחרונות, המחירים בקטגוריה זו הוזלו קצת, אבל עדיין מדובר בהוצאה השניה בגודלה אחרי ההוצאות על דיור"
                 },{
                 	"value":0
                   },{
@@ -771,9 +795,9 @@
                     "name": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_he,
                     "nameEn": year.categories.education_culture_and_entertainment.categories.culture_sports_and_entertainment.name_en,
                     "color": "#f9e17f",
-                    "pic": "",
-                    "height_":0 ,
-                    "ratio": 0
+                    "pic": "images/mofaei_tarbut.svg",
+                    "height_":223 ,
+                    "ratio": 0.7892376682
                 }, {
                     "value": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_he,
