@@ -6,14 +6,12 @@ body{
     width: 470px;
     height: 62.654321%;
     background-color: #3e3e49;
-
     position: absolute;
-    top:0;
+    top:10%;
     bottom: 0;
-    left: 0;
+    left: 28%;
     right: 0;
-
-    margin: auto;
+   
 }
 #submit{
 	background: url("../images/confirm.svg")no-repeat;

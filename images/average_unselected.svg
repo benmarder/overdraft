@@ -3,17 +3,17 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="100px" height="78px" viewBox="0 0 100 78" enable-background="new 0 0 100 78" xml:space="preserve">
-<polygon fill="#2B2B33" points="0,0 0,78 91.287,78 99,70.926 99,0 "/>
-<rect fill="#36363D" width="99" height="71"/>
-<g>
+<polygon opacity="0.6" fill="#2B2B33" points="0,0 0,78 91.287,78 99,70.926 99,0 "/>
+<rect opacity="0.6" fill="#36363D" width="99" height="71"/>
+<g opacity="0.6">
 	<defs>
-		<rect id="SVGID_25_" width="100" height="78"/>
+		<rect id="SVGID_27_" opacity="0.6" width="100" height="78"/>
 	</defs>
 	<clipPath id="SVGID_2_">
-		<use xlink:href="#SVGID_25_"  overflow="visible"/>
+		<use xlink:href="#SVGID_27_"  overflow="visible"/>
 	</clipPath>
 </g>
-<g>
+<g opacity="0.6">
 	<path fill="#FFFFFF" d="M28.733,42.316c-0.102,1.394-1.088,2.516-2.481,2.516H15.679v-4.76h1.904l-1.054-14.041h5.065l1.054,14.041
 		h1.292l0.985-14.041h4.93L28.733,42.316z"/>
 	<path fill="#FFFFFF" d="M43.49,35.381h-2.21l2.583,4.691v4.76H31.659v-4.76h6.765l-7.207-14.041h5.439l2.55,5.712h0.238

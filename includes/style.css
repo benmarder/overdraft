@@ -32,26 +32,23 @@ li,li>a{
 	cursor:pointer;
 	height:8%;
 }
-#text_box{
-	position:absolute;
-	top:30%;
-	left:25%;
-	width:50%;
-	height:40%;
-	background: #36363d;
-	opacity:0.9;
-	display:none;
+.text_box{
+
 }
 .info{
 	z-index:2;
 	width:25px;
 	height:25px;
-	background: url("../images/i icon-01.svg");
-	background-size:100%;
+	background: url("../images/i icon-01.svg")!important;
+	background-size:100%!important;
 	position:absolute;
 	bottom:13px;
 	right:10px;
 	cursor: help;
+}
+.info:hover{
+	
+	display:block;	
 }
 
 .personSelected,#one_person,#two_persons,#three_persons,#four_persons,#five_persons,#six_persons,#average{
@@ -156,49 +153,72 @@ li,li>a{
 	content:url('../images/6 persons.svg');
 }
 #average{
-	content:url('../images/average.svg');
+	content:url('../images/average_unselected.svg');
 	top:56%;
-	visibility: hidden	
+	visibility: hidden;
 }
-#selectedAverage{
+#selectedAverage,#average:hover{
 	content:url('../images/average.svg');	
 }		
 #main_x{
 	
 }
 #Health_x{
-	content:url("../images/x_Health.svg");
+	content:url("../images/x_for_all.svg");
 }
 
 #Clothingandfootwear_x{
-	content:url("../images/x_Clothing and footwear.svg");
+	content:url("../images/x_for_all.svg");
 }
 #Miscellaneousgoodsandservices_x{
-	content:url("../images/x_Cosmetics.svg");
+	content:url("../images/x_for_all.svg");
 }
 #Educationcultureandentertainment_x{
-	content:url("../images/x_education.svg");
+	content:url("../images/x_for_all.svg");
 }
 #Transportandcommunications_x{
-		content:url("../images/x_transport.svg");
+		content:url("../images/x_for_tahbura_vetikshiret.svg");
 }
 #Food_x{
-	content:url("../images/x_food.svg");
+	content:url("../images/x_for_all.svg");
 }
 #HousingDwellingandhouseholdmaintenance_x{
-	content:url("../images/x_Housing and household.svg");
+	content:url("../images/x_for_all.svg");
+}
+#Health_x{
+	content:url("../images/x_for_all.svg");
+}
+
+#Clothingandfootwear_txt{
+	content:url("../images/x_for_all.svg");
+}
+#Miscellaneousgoodsandservices_txt{
+	content:url("../images/x_for_all.svg");
+}
+#Educationcultureandentertainment_txt{
+	content:url("../images/x_for_all.svg");
+}
+#Transportandcommunications_txt{
+		content:url("../images/x_for_tahbura_vetikshiret.svg");
+}
+#Food_txt{
+	content:url("../images/x_for_all.svg");
+}
+#HousingDwellingandhouseholdmaintenance_txt{
+	content:url("../images/x_for_all.svg");
 }
 .x_botton{
+	z-index:100;
 	cursor:pointer;
 	position:absolute;
-	right:7.6%;
+	left:0;
 	height:8%;
 }
-.x_botton_hover{
+/*.x_botton_hover{
 	-webkit-animation:spin 1.2s linear;
     -moz-animation:spin 1.2s linear ;
     animation:spin 1.2s linear;
-}
+}*/
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
@@ -207,14 +227,45 @@ svg {
     position:absolute;
   
 }
-
+/*#i3{
+	background:url("../images/box_diur.svg");
+	position:absolute;
+	top:20%;
+	left:20%;
+	display:hidden;
+	width:860px;
+	height:286px
+}
+*/
+/*#i7{
+	background:url("../images/box_tahbura.svg");
+	position:absolute;
+	top:20%;
+	left:20%;
+	display:hidden;
+	width:860px;
+	height:286px
+}
+*/
+#text_box{
+	display:none;
+	top:20%;
+	left:20%;
+	width:860px;
+	height:286px
+	position:absolute;
+	background:url("../images/box_briut.svg");
+}
+#i2{
+	background:url("../images/box_tarbut.svg");
+	
+}
 .year{
 	position:absolute;
 	border-right:1px solid #000000;
 	font:17px font3,arial;
 	padding-top:2px;
 	text-align:center;
-	
 }
 .year:hover,.yearSelected{
 	opacity:0.1; 
@@ -227,15 +278,16 @@ section:hover>p,.yearSelected>P{
 	color:#252525;
 }
 
-.node.active {
-	border-width:90px;
-}
+
 
 .node { 
 	cursor:pointer;
 	 position: absolute;  
 }
-
+.node:hover{
+	opacity:0.9;
+	
+}
 .node>img{
 	position:absolute;	
 }

@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="100px" height="78px" viewBox="0 0 100 78" enable-background="new 0 0 100 78" xml:space="preserve">
-<g opacity="0.8">
-	<g>
-		<polyline fill="#2B2B33" points="0,78 0.188,78 92.287,78 100,70.926 100,0 92.287,0 0,0 		"/>
-	</g>
-	<rect fill="#36363D" width="100" height="71"/>
-	<g>
-		<path fill="#FFFFFF" d="M21.971,45.665c0.189-0.957,0.296-1.937,0.579-2.864c0.942-3.102,2.792-5.521,5.601-7.186
-			c0.287-0.17,0.48-0.163,0.741,0.046c2.975,2.41,7.065,2.449,10.075,0.085c0.365-0.287,0.617-0.289,1.006-0.044
-			c3.213,2.021,5.138,4.902,5.816,8.625c0.085,0.473,0.122,0.954,0.182,1.432c-7.858,0-15.718,0.001-23.578-0.003
-			C22.253,45.755,22.113,45.696,21.971,45.665z"/>
-		<path fill="#FFFFFF" d="M40.633,29.358c0.071,3.398-2.709,6.628-6.64,6.648c-3.669,0.017-6.668-2.979-6.677-6.636
-			c-0.008-3.712,2.952-6.646,6.662-6.687C37.632,22.644,40.725,25.742,40.633,29.358z"/>
-	</g>
-	<text transform="matrix(1 0 0 1 67.4895 44.8322)" fill="#FFFFFF" font-family="'AdumaFOT-Bold'" font-size="34">1</text>
+<polygon opacity="0.6" fill="#2B2B33" points="0,0 0,78 91.287,78 99,70.926 99,0 "/>
+<rect opacity="0.6" fill="#36363D" width="99" height="71"/>
+<g opacity="0.6">
+	<defs>
+		<rect id="SVGID_3_" opacity="0.6" width="100" height="78"/>
+	</defs>
+	<clipPath id="SVGID_2_">
+		<use xlink:href="#SVGID_3_"  overflow="visible"/>
+	</clipPath>
+	<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M20.971,45.665c0.189-0.957,0.297-1.938,0.579-2.864
+		c0.94-3.102,2.792-5.521,5.601-7.186c0.287-0.17,0.48-0.164,0.74,0.045c2.975,2.41,7.066,2.449,10.076,0.086
+		c0.365-0.287,0.617-0.289,1.005-0.045c3.214,2.021,5.138,4.901,5.817,8.625c0.085,0.473,0.122,0.954,0.182,1.433
+		c-7.857,0-15.718,0.001-23.578-0.004C21.253,45.755,21.113,45.695,20.971,45.665"/>
+	<path clip-path="url(#SVGID_2_)" fill="#FFFFFF" d="M39.633,29.358c0.07,3.397-2.709,6.628-6.641,6.647
+		c-3.67,0.017-6.668-2.979-6.677-6.637c-0.008-3.712,2.952-6.646,6.662-6.686C36.632,22.645,39.725,25.741,39.633,29.358"/>
+</g>
+<g opacity="0.6">
+	<path fill="#FFFFFF" d="M70.229,44.832V31.947l-2.55,1.836v-4.76l3.842-2.992h3.808v18.8H70.229z"/>
 </g>
 </svg>

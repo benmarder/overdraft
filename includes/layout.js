@@ -6,7 +6,7 @@
         var years = "2002";
         var i = 0,
             a = 0;
-
+	var o=0;
         var main, health,clothing,food,housing,education,transport, currentFifth, currentYear, category,
          lineData, currentCategory,miscellaneous, linegraph, x, y, lineFunction,
           area,lastYear,lastFifth,level; //global
@@ -98,6 +98,10 @@
 								});
 								
 			$(".personSelected").click(function(){
+				 $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }
 										if(links2Off){
 											openPersonsNav();
 											if(linksOff==0)closeShareNav();
@@ -107,16 +111,37 @@
             createTreemap("2011",Math.abs(window.location.search.match(/\d+/)-6),"main");
             
             $(".personSelected").attr("id","personSelected"+window.location.search.match(/\d+/));
-            $("#average").click(function(){currentFifth=6;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","selectedAverage");});
-            $("#one_person").click(function(){currentFifth=5;changeLayout(currentYear,currentFifth,currentCategory);$(".personSelected").attr("id","personSelected1");});
-            $("#two_persons").click(function(){currentFifth=4;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected2");});
-            $("#three_persons").click(function(){currentFifth=3;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected3");});
-            $("#four_persons").click(function(){currentFifth=2;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected4");});
-            $("#five_persons").click(function(){currentFifth=1;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected5");});
-            $("#six_persons").click(function(){currentFifth=0;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected6");});
+            $("#average").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=6;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","selectedAverage");});
+            $("#one_person").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=5;changeLayout(currentYear,currentFifth,currentCategory);$(".personSelected").attr("id","personSelected1");});
+            $("#two_persons").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=4;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected2");});
+            $("#three_persons").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=3;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected3");});
+            $("#four_persons").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=2;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected4");});
+            $("#five_persons").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=1;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected5");});
+            $("#six_persons").click(function(){ $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }currentFifth=0;changeLayout(currentYear,currentFifth,currentCategory);changeArea();$(".personSelected").attr("id","personSelected6");});
 			$("ul>li").click(function(){closeShareNav();closePersonsNav();});
 		
-
+			
             var node = div.datum(root).selectAll(".node");
             node.data(treemap.nodes)
                 .enter()
@@ -175,7 +200,7 @@
                 });
             }
             $("#"+currentYear).addClass("yearSelected");
-
+			
             function onClick(d) {
 				if(level!=1)
 					return;
@@ -284,18 +309,25 @@
 						.attr("d",function(){return lineFunction(lineData);});
                
             }
-         	
+         		
             function position(d) {
-            	var test=this;
 				if(level==1){
-					this.append("div").attr("class","info")
-										.on('mouseover', function(d){d3.select("#text_box")
-										.style("display","block");});
-										test.select("h4")
-										.html(function(d){
-											return ((Math.round((d.value / category.fifths[currentFifth]) * 100)) + "%");
-										});
-				}	
+	//			for(o=0;o<8;o++){
+					$(".node").append("<div class='info'></div>");
+					//this.append("div").attr("class","info y"+d.dameEn);
+					
+						//addClass(function(d){d.nameEn.replace(/ /g,'').replace(/,/g,'')+"_txt";})
+				//						.on('mouseover', function(d){
+					//					 d3.select("#info")
+					//					.style("display","block");});
+										//	.html(function(d){
+										//	return  "%";
+						//benma			})});
+		//		}						
+			}
+		//	$(".info").hover(function(d){
+			//			alert("hi");
+				//		$("#text_box").css("display","block");},function(){$("#text_box").css("display","none");});
                     this
                         .style("background", function(d) {
                             return d.color;
@@ -329,14 +361,12 @@
                         .style("top", function(d) {
                         		
                              if ((window.innerHeight-areaChartHeight) / d.dy > 2.65)
-                                return "7px";
+                                return "10px";
                             return ((d.dy - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_)) / 2) + "px";
                         })
 
                     .style("right", function(d) {
-                    	if(d.nameEn=="Clothing and footwear"){
-                        			return "3px";
-                        			}	
+                    	
                         return ((d.dx - (Math.sqrt((d.dy * d.dx * 0.35) / (d.height_ * d.height_ * d.ratio)) * d.height_) * d.ratio) / 2) + "px";
                     })
                     
@@ -344,9 +374,19 @@
                     .attr("src", function(d) {
                             return d.pic;
                        });
-                       
+                                         
+
                     this.select(".percent")
                    		 .style("color",function(d){
+                   		 		switch(currentCategory){
+                   		 			case "Miscellaneous goods and services": return "#215f72";
+                   					 case "Transport and communications":return "#7f2925";
+                   		 			case "Health": return "#7f4533";
+                   		 			case "Clothing and footwear": return "#a06122";
+                   		 			case "Education, culture and entertainment": return "#b7913d";
+                   		 			case "Food": return "#984daa";
+                   		 			case "Housing, Dwelling and household maintenance": return "#367065";
+                   		 		}
                     			if(d.nameEn=="Clothing and footwear"){
                     				return "#b29c80";
                     			}
@@ -354,7 +394,10 @@
                     				return "#b7913d";
                     			}	
                     		})
-                    	.style("font-size",function(d){if(d.dy<window.innerHeight/5.5)return "39px";})
+                    	.style("font-size",function(d){
+                    			
+                    						if((d.dy<window.innerHeight/5.5) ||(d.nameEn=="Vegetable oils and products"))
+                    							return "39px";})
                     	.transition()
                         .duration(50)
                         .text(function(d) {
@@ -416,6 +459,15 @@
 
                     this.select(".name")
                     .style("color",function(d){
+                    			switch(currentCategory){
+                    				case "Miscellaneous goods and services": return "#215f72";
+                   					case "Transport and communications":return "#7f2925";
+                    				case "Health": return "#7f4533";
+                   		 			case "Clothing and footwear": return "#a06122";
+                   		 			case "Education, culture and entertainment": return "#b7913d";
+                   		 			case "Food": return "#984daa";
+                   		 			case "Housing, Dwelling and household maintenance": return "#367065";
+                   		 		}
                     			if(d.nameEn=="Clothing and footwear"){
                     				return "#b29c80";
                     			}
@@ -452,6 +504,10 @@
                 $(".yearSelected").removeClass("yearSelected");
                 $(this).addClass("yearSelected");
                 changeLayout($(this).attr("id"), currentFifth, currentCategory);
+                $(".info").remove();
+                if(level==1){
+                $(".node").append("<div class='info'></div>");
+                }
             });
 
           	   
@@ -479,8 +535,8 @@
                     "nameEn": year.categories.education_culture_and_entertainment.name_en,
                     "color": "#f9dc62",
                     "pic": "images/culture_and_education_icon.svg",
-                    "height_": 240,
-                    "ratio": 0.85833333,
+                    "height_": 184,
+                    "ratio": 1.3,
                     "info":"ההוצאה הרביעית בגודלה מקרב כלל ההוצאות. בעיקרון, הגודל היחסי של ההוצאה הזו פוחת עם השנים. אבל אם מסתכלים על הנתונים מקרוב, רואים שהחלק היחסי של ההוצאות על חינוך עולה. ככה זה כשההורים מרגישים שהמדינה לא נותנת מספיק, וקונים לילדים שלהם שיעורים פרטיים"
                 }, {
                     "value": year.categories.housing_dwelling_and_household_maintenance.fifths[fifths],
@@ -515,7 +571,7 @@
                     "color": "#f39463",
                     "pic": "images/health_icon.svg",
                     "height_": 60,
-                    "ratio": 3.333333333,
+                    "ratio": 1.1,
                     "info":"ההוצאות על בריאות גדלות בהתמדה עם השנים, בעיקר בגלל שהישראלים קונים יותר ויותר ביטוחי בריאות, מה שמגדיל עוד יותר את ההוצאה על בריאות (כי אם כבר יש ביטוח, בואו נשתמש בו). עיקר ההוצאה הזו מתגלגל בסוף לכיס הרופאים"
                 }, {
                     "value": year.categories.transport_and_communications.fifths[fifths],
@@ -580,40 +636,40 @@
                     "nameEn": year.categories.clothing_and_footwear.categories.women_s_outerwear.name_en,
                     "color": "#fdebcc",
                     "pic": "images/dress_icon.svg",
-                    "height_": 267,
-                    "ratio": 0.65543071
+                    "height_": 322,
+                    "ratio": 0.43167701
                 }, {
                     "value": year.categories.clothing_and_footwear.categories.men_s_outerwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.men_s_outerwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.men_s_outerwear.name_en,
                     "color": "#fbd9a3",
                     "pic": "images/Tshirt_icon.svg",
-                    "height_": 363,
-                    "ratio": 0.91184573
+                    "height_": 599,
+                    "ratio": 0.14
                 }, {
                     "value": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.miscellaneous_clothing_articles.name_en,
                     "color": "#ed973a",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/different_clothes_icon.svg",
+                    "height_": 105,
+                    "ratio": 1.3238
                 }, {
                    "value": year.categories.clothing_and_footwear.categories.footwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.footwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.footwear.name_en,
                     "color": "#facc88",
                     "pic": "images/shoes_icon.svg",
-                    "height_": 253,
-                    "ratio": 0.87747036
+                    "height_": 517,
+                    "ratio": 0.2
                 }, {
                    "value": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.fifths[fifths],
                     "name": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_he,
                     "nameEn": year.categories.clothing_and_footwear.categories.children_s_and_babies_outerwear.name_en,
                     "color": "#f8c06d",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/baby_icon.svg",
+                    "height_": 153,
+                    "ratio": 0.9084
                 },{
                 	"value":0
                 },
@@ -625,146 +681,146 @@
                     "name": year.categories.food.categories.miscellaneous_food_products.name_he,
                     "nameEn": year.categories.food.categories.miscellaneous_food_products.name_en,
                     "color": "#e4b2ef",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/different_foods_icon.svg",
+                    "height_": 192,
+                    "ratio": 0.8437
                 }, {
                     "value": year.categories.food.categories.bread_cereals_and_pastry_products.fifths[fifths],
                     "name": year.categories.food.categories.bread_cereals_and_pastry_products.name_he,
                     "nameEn": year.categories.food.categories.bread_cereals_and_pastry_products.name_en,
                     "color": "#db9cea",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/bread_icon.svg",
+                    "height_": 239,
+                    "ratio": 0.970
                 }, {
                     "value": year.categories.food.categories.fish.fifths[fifths],
                     "name": year.categories.food.categories.fish.name_he,
                     "nameEn": year.categories.food.categories.fish.name_en,
                     "color": "#edcff5",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/fish_icon.svg",
+                    "height_": 170,
+                    "ratio": 0.7411
                 }, {
                     "value": year.categories.food.categories.vegetables_and_fruit.fifths[fifths],
                     "name": year.categories.food.categories.vegetables_and_fruit.name_he,
                     "nameEn": year.categories.food.categories.vegetables_and_fruit.name_en,
                     "color": "#cc72e1",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/fruits_vegtebales_icon.svg",
+                    "height_": 362,
+                    "ratio": 0.45
                 }, {
                    "value": year.categories.food.categories.meals_away_from_home.fifths[fifths],
                     "name": year.categories.food.categories.meals_away_from_home.name_he,
                     "nameEn": year.categories.food.categories.meals_away_from_home.name_en,
                     "color": "#e1aaed",
-                    "pic": "",
-                    "height_":0,
-                    "ratio": 0
+                    "pic": "images/eating_outside_icon.svg",
+                    "height_":136,
+                    "ratio": 1.9485
                 }, {
                    "value": year.categories.food.categories.milk_milk_products_and_eggs.fifths[fifths],
                     "name": year.categories.food.categories.milk_milk_products_and_eggs.name_he,
                     "nameEn": year.categories.food.categories.milk_milk_products_and_eggs.name_en,
                     "color": "#d78fe7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/milk_eggs_icon.svg",
+                    "height_": 265,
+                    "ratio": 1.252
                 }, {
                    "value": year.categories.food.categories.meat_and_poultry.fifths[fifths],
                     "name": year.categories.food.categories.meat_and_poultry.name_he,
                     "nameEn": year.categories.food.categories.meat_and_poultry.name_en,
                     "color": "#d181e4",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/ternegol_icon.svg",
+                    "height_": 273,
+                    "ratio": 0.7509
                 },{
                    "value": year.categories.food.categories.vegetable_oils_and_products.fifths[fifths],
                     "name": year.categories.food.categories.vegetable_oils_and_products.name_he,
                     "nameEn": year.categories.food.categories.vegetable_oils_and_products.name_en,
                     "color": "#f3dcf8",
-                    "pic": "",
-                    "height_":0,
-                    "ratio": 0 
+                    "pic": "images/oils_icon.svg",
+                    "height_":123,
+                    "ratio": 0.9105
                 },{
                    "value": year.categories.food.categories.soft_drinks.fifths[fifths],
                     "name": year.categories.food.categories.soft_drinks.name_he,
                     "nameEn": year.categories.food.categories.soft_drinks.name_en,
                     "color": "#e8bff1",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio":0 
+                    "pic": "images/drinks_icon.svg",
+                    "height_": 191,
+                    "ratio":0.4188 
                 },{
                    "value": year.categories.food.categories.sugar_and_sugar_products.fifths[fifths],
                     "name": year.categories.food.categories.sugar_and_sugar_products.name_he,
                     "nameEn": year.categories.food.categories.sugar_and_sugar_products.name_en,
                     "color": "#f0d5f6",
-                    "pic": "",
-                    "height_":0 ,
-                    "ratio": 0
+                    "pic": "images/sugar_icon.svg",
+                    "height_":123,
+                    "ratio": 1.219
                 },{
                    "value": year.categories.food.categories.alcoholic_beverages.fifths[fifths],
                     "name": year.categories.food.categories.alcoholic_beverages.name_he,
                     "nameEn": year.categories.food.categories.alcoholic_beverages.name_en,
                     "color": "#f7ebfb",
-                    "pic": "",
-                    "height_":0,
-                    "ratio":0 
+                    "pic": "images/alcohol_icon.svg",
+                    "height_":123,
+                    "ratio":0.915 
                 }];
                 miscellaneous = [{
                     "value": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.cigarettes_tobacco_and_accessories.name_en,
                     "color": "#79ccf6",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/sigariot_tabak.svg",
+                    "height_": 300,
+                    "ratio": 0.22
                 }, {
                     "value": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_articles_and_cosmetics.name_en,
                     "color": "#45b9f5",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/mozarim_ishiim_vecosmetica.svg",
+                    "height_": 273,
+                    "ratio": 1.285714286
                 }, {
                     "value": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.personal_services_and_cosmetics.name_en,
                     "color": "#e8f3f7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/shirotim_ishiim_vecosmetica.svg",
+                    "height_": 240,
+                    "ratio": 0.55
                 }, {
                     "value": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.legal_and_other_services.name_en,
                     "color": "#68c6f6",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/shirotim_mishpatiim.svg",
+                    "height_": 155,
+                    "ratio": 0.55
                 }, {
                    "value": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.jewellery_and_watches.name_en,
                     "color": "#d0ecf9",
-                    "pic": "",
-                    "height_":0,
-                    "ratio": 0
+                    "pic": "images/tahshitim_shaonim.svg",
+                    "height_":175,
+                    "ratio": 0.8857142786
                 }, {
                    "value": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.wallets_bags_suitcases_etc.name_en,
                     "color": "#bee5f8",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/arnakim_tikim.svg",
+                    "height_": 136,
+                    "ratio": 1.014705882
                 }, {
                   	"value": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.fifths[fifths],
                     "name": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_he,
                     "nameEn": year.categories.miscellaneous_goods_and_services.categories.organization_dues_and_donations.name_en,
                     "color": "#9cd9f7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/misei_irgon.svg",
+                    "height_": 129,
+                    "ratio": 1.348837209
                 },{
                    "value":0
                 },{
@@ -797,7 +853,7 @@
                     "color": "#f9e17f",
                     "pic": "images/mofaei_tarbut.svg",
                     "height_":223 ,
-                    "ratio": 0.7892376682
+                    "ratio": 0.5
                 }, {
                     "value": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.entertainment_durable_goods.name_he,
@@ -805,7 +861,7 @@
                     "color": "#f7d546",
                     "pic": "images/muzrei_tarbut_vebidur.svg",
                     "height_": 236,
-                    "ratio": 1.525423729
+                    "ratio": 1.10
                 }, {
                    "value": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.fifths[fifths],
                     "name": year.categories.education_culture_and_entertainment.categories.recreation_and_excursions.name_he,
@@ -829,7 +885,7 @@
                     "color": "#ead478",
                     "pic": "images/sherotei_hinuh.svg",
                     "height_": 243,
-                    "ratio": 1.481481481
+                    "ratio": 1.0
                 },{
                    "value":0
                 },{
@@ -853,8 +909,8 @@
                     "nameEn": year.categories.transport_and_communications.categories.post_telephone_and_communications.name_en,
                     "color": "#f0a29a",
                     "pic": "images/shirotei_doar_telephone_vetikshoret.svg",
-                    "height_": 315,
-                    "ratio": 0.5587301587
+                    "height_": 515,
+                    "ratio": 0.25
                 }, {
                     "value": year.categories.transport_and_communications.categories.public_transport.fifths[fifths],
                     "name": year.categories.transport_and_communications.categories.public_transport.name_he,
@@ -897,9 +953,9 @@
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.furniture_and_household_equipment.name_en,
                     "color": "#58d8bf",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/riut_icon.svg",
+                    "height_": 145,
+                    "ratio": 1.227586207
                 }, {
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.other_housing_expenditures.name_he,
@@ -913,65 +969,65 @@
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.monthly_rent.name_en,
                     "color": "#44d3b7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/rent_icon.svg",
+                    "height_": 264,
+                    "ratio": 1.109848485
                 }, {
                     "value": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.consumption_of_housing_services.name_en,
                     "color": "#2eceaf",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/sherute_diur.svg",
+                    "height_": 378,
+                    "ratio": 0.422
                 }, {
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.maintenance_and_renovation.name_en,
                     "color": "#aaeadf",
-                    "pic": "",
-                    "height_":0,
-                    "ratio": 0
+                    "pic": "images/hazaka_home_icon.svg",
+                    "height_":153,
+                    "ratio": 0.9673202614
                 }, {
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.water.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.water.name_en,
                     "color": "#c1f0e7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/water icon.svg",
+                    "height_": 110,
+                    "ratio": 0.75454545
                 }, {
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.miscellaneous_household_articles.name_en,
                     "color": "#ebfaf7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio": 0
+                    "pic": "images/zurche_meshek_shonim.svg",
+                    "height_": 125,
+                    "ratio": 0.6
                 },{
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.domestic_help.name_en,
                     "color": "#96e6d7",
-                    "pic": "",
-                    "height_":0,
-                    "ratio":0 
+                    "pic": "images/ezra_home_icon.svg",
+                    "height_":119,
+                    "ratio":0.6890756303 
                 },{
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.electricity_gas_and_fuel_for_dwelling.name_en,
                     "color": "#6dddc7",
-                    "pic": "",
-                    "height_": 0,
-                    "ratio":0 
+                    "pic": "images/gaz_hashmal_icon.svg",
+                    "height_": 145,
+                    "ratio":1.572413793
                 },{
                    "value": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.fifths[fifths],
                     "name": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_he,
                     "nameEn": year.categories.housing_dwelling_and_household_maintenance.categories.municipal_property_taxes_arnona.name_en,
                     "color": "#8aecdd",
-                    "pic": "",
-                    "height_":0 ,
-                    "ratio": 0
+                    "pic": "images/arnona_icon.svg",
+                    "height_":139,
+                    "ratio": 0.8
                 },{
                    "value":0
                 }];
